@@ -1,0 +1,11 @@
+
+{
+  "appId": "app.lovable.f4c92572405043d29183ce5adce05c27",
+  "appName": "Mars & Pim's Love App",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://f4c92572-4050-43d2-9183-ce5adce05c27.lovableproject.com?forceHideBadge=true",
+    "cleartext": true
+  }
+}

@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,28 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				love: {
+					100: '#FEE5F0',
+					200: '#FDC9E0',
+					300: '#FBADCF',
+					400: '#F690BF',
+					500: '#F46BA8',
+					600: '#D14A89',
+					700: '#AE2E69',
+					800: '#8B184A',
+					900: '#680A33'
+				},
+				purple: {
+					100: '#E5DEFF',
+					200: '#C7BCFA',
+					300: '#A89BF5',
+					400: '#9B87F5',
+					500: '#7E69AB',
+					600: '#6E59A5',
+					700: '#5A4886',
+					800: '#473967',
+					900: '#342A48'
 				}
 			},
 			borderRadius: {
@@ -70,25 +93,45 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'pulse-heart': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.1)' }
+				},
+				'slide-up': {
+					'0%': { transform: 'translateY(10px)', opacity: '0' },
+					'100%': { transform: 'translateY(0)', opacity: '1' }
+				},
+				'wiggle': {
+					'0%, 100%': { transform: 'rotate(-3deg)' },
+					'50%': { transform: 'rotate(3deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'pulse-heart': 'pulse-heart 1.5s ease-in-out infinite',
+				'slide-up': 'slide-up 0.5s ease-out',
+				'wiggle': 'wiggle 1s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'love-gradient': 'linear-gradient(to right, #ee9ca7, #ffdde1)',
+				'purple-gradient': 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)'
+			},
+			fontFamily: {
+				'dancing': ['Dancing Script', 'cursive'],
+				'quicksand': ['Quicksand', 'sans-serif']
 			}
 		}
 	},
