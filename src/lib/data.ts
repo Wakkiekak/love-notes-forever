@@ -160,11 +160,10 @@ export const loveLetters: LoveLetter[] = [
 
 When you told me you liked me and ghosted me for like 5 minutes 😭, I knew you were nervous, but thats what I like about you. Somehow you still mustered up the courage to ask me. Proud of you ♥
 
-Every message we've shared so far means a lot to me. I hope it does for you too. Im so lucky to have you 💞
+Oh and simon with his panic, it was so cute! So happy you asked (I would be to nervous myself). 
 
-Mars are you a red planet, or did I make you blush 🤭
+I hope we keep talking every day and night. I hope this lasts...
 
-Forever yours,
 Pim 💖`,
     unlockDate: new Date(2025, 0, 1), // Already unlocked
     isUnlocked: true
@@ -190,11 +189,11 @@ Pim 💖`,
   {
     id: 3,
     title: "Just Because I Love You",
-    content: `My sweet Mars,
+    content: `Mars,
 
-Sometimes I just need to tell you how much you mean to me. There's no special occasion, no particular reason - just me, overwhelmed by how much I love you.
+I just wanted to say how much I apprieciate you ❤❤
 
-You make ordinary days extraordinary. You turn simple moments into memories I'll treasure forever. Your kindness, your strength, your beautiful heart - everything about you amazes me.
+Our simple chats mean so much to me. I hope they do the same to you. Your the best.
 
 I'm so lucky to call you mine.
 
