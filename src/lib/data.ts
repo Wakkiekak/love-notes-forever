@@ -232,7 +232,7 @@ export const specialDates: SpecialDate[] = [
   {
     id: 2,
     name: "Mars's Birthday",
-    date: new Date(2025, 10, 19), // Example - April 15, 2025
+    date: new Date(Date.UTC(2025, 3, 19, 0, 0, 0)), 
     description: "Happy Birthday, Mars made another orbit 💞"
   },
   {
