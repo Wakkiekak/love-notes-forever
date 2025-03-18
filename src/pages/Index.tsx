@@ -6,7 +6,7 @@ import DailyMessage from '@/components/DailyMessage';
 import CountdownTimer from '@/components/CountdownTimer';
 import SurpriseButton from '@/components/SurpriseButton';
 import { Card, CardContent } from '@/components/ui/card';
-import { Hearts } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 const HomePage = () => {
   return (
@@ -23,7 +23,7 @@ const HomePage = () => {
         
         <div className="text-center mt-10 mb-6">
           <div className="inline-flex items-center text-gray-500 text-sm">
-            <Hearts size={16} className="mr-1 text-love-400" />
+            <Heart size={16} className="mr-1 text-love-400" />
             <span>Made with love by Pim</span>
           </div>
         </div>
