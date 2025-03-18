@@ -36,14 +36,14 @@ export interface AnimalFact {
 }
 
 // First meeting date - Mars & Pim
-export const FIRST_DATE = new Date(2024, 2, 17); // March 17, 2024
-export const ANNIVERSARY_DATE = new Date(2025, 2, 17); // March 17, 2025
+export const FIRST_DATE = new Date(2025, 2, 17); // March 17, 2024
+export const ANNIVERSARY_DATE = new Date(2026, 2, 17); // March 17, 2025
 
 // Daily messages
 export const dailyMessages: LoveMessage[] = [
   { 
     id: 1, 
-    content: "Hey beautiful, I hope your day is as amazing as you! 💖", 
+    content: "Hey mars, I hope your day is amazing today! 💖", 
     type: 'daily' 
   },
   { 
@@ -53,42 +53,42 @@ export const dailyMessages: LoveMessage[] = [
   },
   { 
     id: 3, 
-    content: "If you're reading this, imagine me giving you a big hug right now! 🤗", 
+    content: "If you're reading this, im probably thinking about you 💓", 
     type: 'daily' 
   },
   { 
     id: 4, 
-    content: "Your smile makes my heart skip a beat every time! 💓", 
+    content: "You make my life so much funnier!", 
     type: 'daily' 
   },
   { 
     id: 5, 
-    content: "I feel so lucky to have you in my life. You make everything better! ✨", 
+    content: "You make everything better! ✨", 
     type: 'daily' 
   },
   { 
     id: 6, 
-    content: "Just wanted to remind you how absolutely amazing you are! 💫", 
+    content: "Just wanted to remind you how amazing you are!", 
     type: 'daily' 
   },
   { 
     id: 7, 
-    content: "Sending you a virtual kiss! 💋 Miss you lots when we're apart!", 
+    content: "I miss you lots when we're apart!", 
     type: 'daily' 
   },
   { 
     id: 8, 
-    content: "You're my favorite person to talk to, laugh with, and just be around. 💕", 
+    content: "You're my favorite person to talk to!", 
     type: 'daily' 
   },
   { 
     id: 9, 
-    content: "You make my heart so happy. Thank you for being you! 💖", 
+    content: "You make me so happy. Thank you for being you! 💖", 
     type: 'daily' 
   },
   { 
     id: 10, 
-    content: "I love watching you do the things you're passionate about. Your enthusiasm is contagious! 💫", 
+    content: "I love watching you do the things you're passionate about. Your happines is contagious!", 
     type: 'daily' 
   },
 ];
@@ -97,42 +97,42 @@ export const dailyMessages: LoveMessage[] = [
 export const surpriseMessages: LoveMessage[] = [
   { 
     id: 101, 
-    content: "I love you, Mars! Tap me again if you need more love today! 💕", 
+    content: "I love you, Mars!", 
     type: 'surprise' 
   },
   { 
     id: 102, 
-    content: "Did you know otters hold hands while sleeping? Just like I wish I could with you! 🦦❤️", 
+    content: "I really miss you ngl 😭", 
     type: 'surprise' 
   },
   { 
     id: 103, 
-    content: "You're cuter than a basket of puppies! And that's saying something! 🐶", 
+    content: "You're glasses suit you really well!", 
     type: 'surprise' 
   },
   { 
     id: 104, 
-    content: "If I had a star for every time you made me smile, I'd have an entire galaxy! ✨", 
+    content: "If I had a star for every time you made me smile, I would have the milkey way.", 
     type: 'surprise' 
   },
   { 
     id: 105, 
-    content: "Just thinking about you makes my day brighter! You're my sunshine! ☀️", 
+    content: "Just thinking about you makes my day better!", 
     type: 'surprise' 
   },
   { 
     id: 106, 
-    content: "Being with you feels like home, no matter where we are. 🏡💓", 
+    content: "Being with you feels so right.", 
     type: 'surprise' 
   },
   { 
     id: 107, 
-    content: "Remember when we first met? I knew you were special right away! 💫", 
+    content: "de9eb2", 
     type: 'surprise' 
   },
   { 
     id: 108, 
-    content: "You have the most beautiful soul. I'm so grateful for your kindness! 💝", 
+    content: "You are so nice bro 😭", 
     type: 'surprise' 
   },
 ];
@@ -141,12 +141,12 @@ export const surpriseMessages: LoveMessage[] = [
 export const specialMessages: LoveMessage[] = [
   { 
     id: 201, 
-    content: "Happy Anniversary, my love! One year of us, and countless more to come! 💍", 
+    content: "Happy Anniversary!", 
     type: 'special' 
   },
   { 
     id: 202, 
-    content: "Happy Birthday to the most wonderful person in my life! I hope your day is as special as you are! 🎂🎉", 
+    content: "Happy Birthday to the most wonderful person in my life!", 
     type: 'special' 
   },
 ];
@@ -155,18 +155,18 @@ export const specialMessages: LoveMessage[] = [
 export const loveLetters: LoveLetter[] = [
   {
     id: 1,
-    title: "When We First Met",
-    content: `My dearest Mars,
+    title: "When we first",
+    content: `My best Mars,
 
-When I first saw you, something inside me just knew. It was like the universe whispered your name to my heart before we even spoke. Your smile lit up the room, and I couldn't look away.
+When you told me you liked me and ghosted me for like 5 minutes 😭, I knew you were nervous, but thats what I like about you. Somehow you still mustered up the courage to ask me. Proud of you ♥
 
-Every moment we've shared since then has only made me fall deeper. The way you laugh, the way your eyes crinkle when you're happy, the way you care so deeply about everything and everyone around you.
+Every message we've shared so far means a lot to me. I hope it does for you too. Im so lucky to have you 💞
 
-You're my favorite person, my best friend, and the love of my life.
+Mars are you a red planet, or did I make you blush 🤭
 
 Forever yours,
 Pim 💖`,
-    unlockDate: new Date(2024, 0, 1), // Already unlocked
+    unlockDate: new Date(2025, 0, 1), // Already unlocked
     isUnlocked: true
   },
   {
@@ -178,7 +178,7 @@ One year together, and it feels both like forever and just the beginning. Every 
 
 I love the life we're building together, the memories we're creating, and all our little inside jokes that make us laugh until we can't breathe.
 
-I promise to always be there for you, to hold your hand through good times and bad, to love you with all my heart.
+I promise to always be there for you, through good times and bad, to love you with all my heart.
 
 Here's to many, many more anniversaries together.
 
@@ -208,9 +208,10 @@ Pim 💖`,
     title: "A Surprise Just For You",
     content: `My darling Mars,
 
-Surprise! You've unlocked this letter just by being your wonderful self!
 
-I wanted to remind you today that you are so incredibly loved. Your smile brightens my world. Your laughter is my favorite sound. Your touch makes my heart race.
+Hey mars! Just wanted to say how much I apriecate you! you've always been nice to me. 💞
+
+I just wanted to tall you how much I love you, whenever I think about you my hearts just starts pacing so fast 😭🙏 
 
 You are everything I've ever dreamed of and more than I ever knew to wish for.
 
@@ -227,13 +228,13 @@ export const specialDates: SpecialDate[] = [
     id: 1,
     name: "Our Anniversary",
     date: ANNIVERSARY_DATE,
-    description: "One year of us! 💍"
+    description: "One year already, damn mars! One whole orbit 💓"
   },
   {
     id: 2,
     name: "Mars's Birthday",
-    date: new Date(2025, 3, 15), // Example - April 15, 2025
-    description: "Happy Birthday to my love! 🎂"
+    date: new Date(2025, 10, 19), // Example - April 15, 2025
+    description: "Happy Birthday, Mars made another orbit 💞"
   },
   {
     id: 3,
@@ -243,7 +244,6 @@ export const specialDates: SpecialDate[] = [
   },
 ];
 
-// Animal facts
 export const animalFacts: AnimalFact[] = [
   {
     id: 1,
@@ -285,6 +285,112 @@ export const animalFacts: AnimalFact[] = [
     animal: "Rabbit",
     fact: "When rabbits are happy, they do a little jump and twist in the air called a 'binky'."
   },
+  // New 20 animal facts
+  {
+    id: 9,
+    animal: "Koala",
+    fact: "Koalas sleep up to 18-22 hours a day, mainly because their diet of eucalyptus leaves doesn't provide much energy."
+  },
+  {
+    id: 10,
+    animal: "Sloth",
+    fact: "Sloths can hold their breath for up to 40 minutes while underwater."
+  },
+  {
+    id: 11,
+    animal: "Giraffe",
+    fact: "Giraffes have a tongue that is 18-20 inches long and is blue to protect it from sunburn."
+  },
+  {
+    id: 12,
+    animal: "Kangaroo",
+    fact: "Kangaroos can't walk backward, they can only hop forward."
+  },
+  {
+    id: 13,
+    animal: "Octopus",
+    fact: "Octopuses have three hearts, and their blood is blue due to copper-based hemocyanin."
+  },
+  {
+    id: 14,
+    animal: "Turtle",
+    fact: "Some species of turtles can live to be over 100 years old."
+  },
+  {
+    id: 15,
+    animal: "Horse",
+    fact: "Horses can sleep both lying down and standing up."
+  },
+  {
+    id: 16,
+    animal: "Cheetah",
+    fact: "Cheetahs can go from 0 to 60 mph in just a few seconds, making them the fastest land animal."
+  },
+  {
+    id: 17,
+    animal: "Flamingo",
+    fact: "Flamingos are not born with pink feathers. They get their color from eating shrimp and algae."
+  },
+  {
+    id: 18,
+    animal: "Panda",
+    fact: "Pandas spend up to 12 hours a day eating bamboo, which makes up almost their entire diet."
+  },
+  {
+    id: 19,
+    animal: "Hummingbird",
+    fact: "Hummingbirds are the only birds that can fly backwards."
+  },
+  {
+    id: 20,
+    animal: "Whale",
+    fact: "Blue whales are the largest animals ever known to have lived on Earth, growing up to 100 feet long."
+  },
+  {
+    id: 21,
+    animal: "Bat",
+    fact: "Bats are the only mammals capable of sustained flight, and they can eat up to 1,200 mosquitoes in an hour."
+  },
+  {
+    id: 22,
+    animal: "Lynx",
+    fact: "The lynx has tufted ears and incredibly sharp vision, able to spot prey from a mile away."
+  },
+  {
+    id: 23,
+    animal: "Sea Lion",
+    fact: "Sea lions can walk on land using their front flippers, unlike seals who have to wriggle on their bellies."
+  },
+  {
+    id: 24,
+    animal: "Mantis Shrimp",
+    fact: "Mantis shrimp have the most complex eyes in the animal kingdom, capable of seeing ultraviolet light."
+  },
+  {
+    id: 25,
+    animal: "Chameleon",
+    fact: "Chameleons can change their color to communicate, regulate temperature, and blend into their environment."
+  },
+  {
+    id: 26,
+    animal: "Meerkat",
+    fact: "Meerkats live in highly social groups and always have a 'sentry' standing guard to warn of predators."
+  },
+  {
+    id: 27,
+    animal: "Bison",
+    fact: "Bison can run up to 35 miles per hour and jump over 6 feet high."
+  },
+  {
+    id: 28,
+    animal: "Penguin",
+    fact: "Some species of penguins can 'fly' underwater, using their wings as flippers to propel themselves."
+  },
+  {
+    id: 29,
+    animal: "Zebra",
+    fact: "Zebras' stripes are unique, much like human fingerprints. No two zebras have the same pattern."
+  }
 ];
 
 // Helper functions
@@ -381,7 +487,7 @@ export function getRandomContent(): { type: string; content: string | LoveMessag
         type, 
         content: {
           id: 301,
-          content: "Remember that time we laughed so hard we couldn't breathe? That's one of my favorite memories! 💭",
+          content: "When you asked me out you were so nervous, it was so cute 😊",
           type: 'surprise'
         }
       };
