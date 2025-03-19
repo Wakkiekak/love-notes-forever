@@ -232,7 +232,7 @@ export const specialDates: SpecialDate[] = [
   {
     id: 2,
     name: "Mars's Birthday",
-    date: new Date(2025, 3, 19),  // Corrected to April 19, 2025
+    date: new Date(2025, 10, 19),  // Corrected to October 19, 2025
     description: "Happy Birthday, Mars made another orbit 💞"
   },
   {
