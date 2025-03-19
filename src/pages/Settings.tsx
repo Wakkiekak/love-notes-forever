@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '@/lib/ThemeContext';
 import Layout from '@/components/Layout';
@@ -14,12 +13,12 @@ import { Switch } from '@/components/ui/switch';
 import { Save, Undo, Eye, Moon, Sun, Volume2, Volume1, BellRing } from 'lucide-react';
 
 const themeOptions = [
-  { id: 'default', name: 'Default (Pink/Purple)', icon: '💕' },
-  { id: 'space', name: 'Deep Space', icon: '🌌' },
-  { id: 'galaxy', name: 'Cosmic Galaxy', icon: '✨' },
-  { id: 'mars', name: 'Mars Red', icon: '🔴' },
-  { id: 'ocean', name: 'Ocean Blue', icon: '🌊' },
-  { id: 'forest', name: 'Forest Green', icon: '🌲' },
+  { id: 'default', name: 'Default', description: 'Pink/Purple', icon: '💕' },
+  { id: 'space', name: 'Deep Space', description: 'Dark blue theme', icon: '🌌' },
+  { id: 'galaxy', name: 'Galaxy', description: 'Purple cosmic theme', icon: '✨' },
+  { id: 'mars', name: 'Mars', description: 'Red/orange theme', icon: '🔴' },
+  { id: 'ocean', name: 'Ocean', description: 'Blue/teal theme', icon: '🌊' },
+  { id: 'forest', name: 'Forest', description: 'Green/brown theme', icon: '🌲' },
 ];
 
 const fontOptions = [
@@ -69,7 +68,6 @@ const Settings = () => {
     },
   });
 
-  // Reset preview when component unmounts
   useEffect(() => {
     return () => {
       setPreviewTheme(null);
@@ -77,11 +75,9 @@ const Settings = () => {
     };
   }, [setPreviewTheme, setPreviewFont]);
 
-  // Watch for form value changes to update preview
   const watchedTheme = form.watch('theme');
   const watchedFont = form.watch('font');
   
-  // Update previews when form values change
   useEffect(() => {
     if (watchedTheme !== theme) {
       setPreviewTheme(watchedTheme);
@@ -126,7 +122,6 @@ const Settings = () => {
     setHasUnsavedChanges(false);
   };
 
-  // Get background class based on current theme (for previewing card backgrounds)
   const getThemeCardClass = (themeId: string) => {
     const isActive = (previewTheme || theme) === themeId;
     
@@ -173,18 +168,21 @@ const Settings = () => {
                       <RadioGroup
                         onValueChange={field.onChange}
                         defaultValue={field.value}
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
                       >
                         {themeOptions.map((themeOption) => (
                           <div
                             key={themeOption.id}
-                            className={`flex items-center space-x-2 p-4 rounded-lg cursor-pointer transition-all ${getThemeCardClass(themeOption.id)}`}
+                            className={`flex items-center space-x-2 p-3 rounded-lg cursor-pointer transition-all ${getThemeCardClass(themeOption.id)}`}
                             onClick={() => field.onChange(themeOption.id)}
                           >
                             <RadioGroupItem value={themeOption.id} id={`theme-${themeOption.id}`} />
-                            <div className="flex items-center">
-                              <span className="text-2xl mr-2">{themeOption.icon}</span>
-                              <span>{themeOption.name}</span>
+                            <div className="flex flex-col">
+                              <div className="flex items-center">
+                                <span className="text-xl mr-2">{themeOption.icon}</span>
+                                <span className="font-medium">{themeOption.name}</span>
+                              </div>
+                              <span className="text-xs opacity-75">{themeOption.description}</span>
                             </div>
                           </div>
                         ))}
@@ -241,7 +239,6 @@ const Settings = () => {
               <h2 className="text-xl font-semibold mb-4 text-card-foreground">Display & Accessibility</h2>
               
               <div className="space-y-6">
-                {/* Animation Speed */}
                 <FormField
                   control={form.control}
                   name="animationSpeed"
@@ -265,7 +262,6 @@ const Settings = () => {
                   )}
                 />
                 
-                {/* Dark Mode */}
                 <FormField
                   control={form.control}
                   name="darkMode"
@@ -296,7 +292,6 @@ const Settings = () => {
               <h2 className="text-xl font-semibold mb-4 text-card-foreground">Notifications & Sound</h2>
               
               <div className="space-y-4">
-                {/* Notifications */}
                 <FormField
                   control={form.control}
                   name="notificationsEnabled"
@@ -321,7 +316,6 @@ const Settings = () => {
                   )}
                 />
                 
-                {/* Sound Effects */}
                 <FormField
                   control={form.control}
                   name="soundEffects"
