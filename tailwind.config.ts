@@ -127,11 +127,17 @@ export default {
 			},
 			backgroundImage: {
 				'love-gradient': 'linear-gradient(to right, #ee9ca7, #ffdde1)',
-				'purple-gradient': 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)'
+				'purple-gradient': 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)',
+				'space-gradient': 'linear-gradient(to right, #0f0c29, #302b63, #24243e)',
+				'galaxy-gradient': 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
+				'mars-gradient': 'linear-gradient(to right, #f83600, #f9d423)'
 			},
 			fontFamily: {
 				'dancing': ['Dancing Script', 'cursive'],
-				'quicksand': ['Quicksand', 'sans-serif']
+				'quicksand': ['Quicksand', 'sans-serif'],
+				'poppins': ['Poppins', 'sans-serif'],
+				'montserrat': ['Montserrat', 'sans-serif'],
+				'serif': ['Merriweather', 'serif']
 			}
 		}
 	},
