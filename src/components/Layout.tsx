@@ -27,11 +27,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       case 'galaxy':
         return 'bg-gradient-to-br from-[#2E1065] via-[#4C1D95] to-[#2E1065]';
       case 'mars':
-        return 'bg-gradient-to-br from-[#FEE2E2] via-[#FCA5A5] to-[#FEE2E2]';
+        return 'bg-gradient-to-br from-[#300A0A] via-[#431109] to-[#2D0C08]';
       case 'ocean':
         return 'bg-gradient-to-br from-[#DBEAFE] via-[#93C5FD] to-[#DBEAFE]';
       case 'forest':
         return 'bg-gradient-to-br from-[#DCFCE7] via-[#86EFAC] to-[#DCFCE7]';
+      case 'sunset':
+        return 'bg-gradient-to-br from-[#FFEDD5] via-[#FED7AA] to-[#C4B5FD]';
+      case 'midnight':
+        return 'bg-gradient-to-br from-[#0C1330] via-[#0D1231] to-[#0C1330]';
+      case 'retro':
+        return 'bg-gradient-to-br from-[#E8E5D7] via-[#ECE6CE] to-[#E8E5D7]';
       default:
         return 'bg-gradient-to-br from-love-100 via-purple-100 to-love-100';
     }

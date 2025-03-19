@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '@/lib/ThemeContext';
 import Layout from '@/components/Layout';
@@ -10,15 +11,18 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { Save, Undo, Eye, Moon, Sun, Volume2, Volume1, BellRing } from 'lucide-react';
+import { Save, Undo, Eye, Moon, Sun, Volume2, Volume1, BellRing, Languages, Palette } from 'lucide-react';
 
 const themeOptions = [
   { id: 'default', name: 'Default', description: 'Pink/Purple', icon: '💕' },
   { id: 'space', name: 'Deep Space', description: 'Dark blue theme', icon: '🌌' },
-  { id: 'galaxy', name: 'Galaxy', description: 'Purple cosmic theme', icon: '✨' },
-  { id: 'mars', name: 'Mars', description: 'Red/orange theme', icon: '🔴' },
-  { id: 'ocean', name: 'Ocean', description: 'Blue/teal theme', icon: '🌊' },
-  { id: 'forest', name: 'Forest', description: 'Green/brown theme', icon: '🌲' },
+  { id: 'galaxy', name: 'Galaxy', description: 'Purple cosmic', icon: '✨' },
+  { id: 'mars', name: 'Mars', description: 'Red/orange', icon: '🔴' },
+  { id: 'ocean', name: 'Ocean', description: 'Blue/teal', icon: '🌊' },
+  { id: 'forest', name: 'Forest', description: 'Green/brown', icon: '🌲' },
+  { id: 'sunset', name: 'Sunset', description: 'Orange/purple', icon: '🌅' },
+  { id: 'midnight', name: 'Midnight', description: 'Dark blue/purple', icon: '🌃' },
+  { id: 'retro', name: 'Retro', description: 'Vintage colors', icon: '📼' },
 ];
 
 const fontOptions = [
@@ -36,6 +40,9 @@ const formSchema = z.object({
   darkMode: z.boolean().optional(),
   notificationsEnabled: z.boolean().optional(),
   soundEffects: z.boolean().optional(),
+  autoTranslate: z.boolean().optional(),
+  highContrast: z.boolean().optional(),
+  fontScale: z.number().min(80).max(150),
 });
 
 type SettingsFormValues = z.infer<typeof formSchema>;
@@ -61,10 +68,13 @@ const Settings = () => {
     defaultValues: {
       theme,
       font,
-      animationSpeed: 50,
-      darkMode: false,
-      notificationsEnabled: true,
-      soundEffects: false,
+      animationSpeed: parseInt(localStorage.getItem('animationSpeed') || '50'),
+      darkMode: localStorage.getItem('darkMode') === 'true',
+      notificationsEnabled: localStorage.getItem('notificationsEnabled') === 'true',
+      soundEffects: localStorage.getItem('soundEffects') === 'true',
+      autoTranslate: localStorage.getItem('autoTranslate') === 'true',
+      highContrast: localStorage.getItem('highContrast') === 'true',
+      fontScale: parseInt(localStorage.getItem('fontScale') || '100'),
     },
   });
 
@@ -133,6 +143,9 @@ const Settings = () => {
     localStorage.setItem('soundEffects', data.soundEffects ? 'true' : 'false');
     localStorage.setItem('animationSpeed', data.animationSpeed.toString());
     localStorage.setItem('notificationsEnabled', data.notificationsEnabled ? 'true' : 'false');
+    localStorage.setItem('autoTranslate', data.autoTranslate ? 'true' : 'false');
+    localStorage.setItem('highContrast', data.highContrast ? 'true' : 'false');
+    localStorage.setItem('fontScale', data.fontScale.toString());
     
     saveSettings();
     setHasUnsavedChanges(false);
@@ -196,11 +209,17 @@ const Settings = () => {
     } else if (themeId === 'galaxy') {
       bgClass = 'bg-[#4C1D95] text-white';
     } else if (themeId === 'mars') {
-      bgClass = 'bg-[#221F26] text-white';
+      bgClass = 'bg-[#300A0A] text-amber-100';
     } else if (themeId === 'ocean') {
       bgClass = 'bg-[#BAE6FD] text-[#0c4a6e]';
     } else if (themeId === 'forest') {
       bgClass = 'bg-[#BBF7D0] text-[#14532d]';
+    } else if (themeId === 'sunset') {
+      bgClass = 'bg-gradient-to-r from-orange-400 to-purple-400 text-white';
+    } else if (themeId === 'midnight') {
+      bgClass = 'bg-[#0D1231] text-indigo-100';
+    } else if (themeId === 'retro') {
+      bgClass = 'bg-[#E8E5D7] text-[#5E4C3E]';
     }
     
     return `${bgClass} ${
@@ -240,17 +259,17 @@ const Settings = () => {
                         {themeOptions.map((themeOption) => (
                           <div
                             key={themeOption.id}
-                            className={`flex items-center space-x-2 p-3 rounded-lg cursor-pointer transition-all ${getThemeCardClass(themeOption.id)} h-16 w-full`}
+                            className={`relative flex items-center space-x-2 p-3 rounded-lg cursor-pointer transition-all ${getThemeCardClass(themeOption.id)} h-16 w-full`}
                             onClick={() => {
                               field.onChange(themeOption.id);
                               if (watchedSoundEffects) playUISound('click');
                             }}
                           >
                             <RadioGroupItem value={themeOption.id} id={`theme-${themeOption.id}`} />
-                            <div className="flex flex-col truncate">
+                            <div className="flex flex-col max-w-[75%]">
                               <div className="flex items-center">
-                                <span className="text-xl mr-2">{themeOption.icon}</span>
-                                <span className="font-medium whitespace-nowrap">{themeOption.name}</span>
+                                <span className="text-lg mr-1">{themeOption.icon}</span>
+                                <span className="font-medium text-sm">{themeOption.name}</span>
                               </div>
                               <span className="text-xs opacity-75 truncate">{themeOption.description}</span>
                             </div>
@@ -344,6 +363,34 @@ const Settings = () => {
                 
                 <FormField
                   control={form.control}
+                  name="fontScale"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <div className="flex justify-between">
+                        <FormLabel className="text-card-foreground">Font Size</FormLabel>
+                        <span className="text-sm text-muted-foreground">{field.value}%</span>
+                      </div>
+                      <FormControl>
+                        <Slider
+                          min={80}
+                          max={150}
+                          step={5}
+                          defaultValue={[field.value]}
+                          onValueChange={(values) => {
+                            field.onChange(values[0]);
+                            document.documentElement.style.fontSize = `${values[0]}%`;
+                            setHasUnsavedChanges(true);
+                            if (watchedSoundEffects) playUISound('click');
+                          }}
+                          className="py-4"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
                   name="darkMode"
                   render={({ field }) => (
                     <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
@@ -354,6 +401,34 @@ const Settings = () => {
                         </FormLabel>
                         <div className="text-sm text-muted-foreground">
                           Use dark mode for lower eye strain
+                        </div>
+                      </div>
+                      <FormControl>
+                        <Switch
+                          checked={field.value}
+                          onCheckedChange={(checked) => {
+                            field.onChange(checked);
+                            setHasUnsavedChanges(true);
+                            if (watchedSoundEffects) playUISound('click');
+                          }}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="highContrast"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                      <div className="space-y-0.5">
+                        <FormLabel className="text-base flex items-center">
+                          <Palette className="mr-2 h-4 w-4" />
+                          High Contrast
+                        </FormLabel>
+                        <div className="text-sm text-muted-foreground">
+                          Enhance contrast for better readability
                         </div>
                       </div>
                       <FormControl>
@@ -430,6 +505,34 @@ const Settings = () => {
                             if (checked) {
                               playUISound('click');
                             }
+                          }}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="autoTranslate"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                      <div className="space-y-0.5">
+                        <FormLabel className="text-base flex items-center">
+                          <Languages className="mr-2 h-4 w-4" />
+                          Auto-Translate
+                        </FormLabel>
+                        <div className="text-sm text-muted-foreground">
+                          Auto-translate messages to your preferred language
+                        </div>
+                      </div>
+                      <FormControl>
+                        <Switch
+                          checked={field.value}
+                          onCheckedChange={(checked) => {
+                            field.onChange(checked);
+                            setHasUnsavedChanges(true);
+                            if (watchedSoundEffects) playUISound('click');
                           }}
                         />
                       </FormControl>

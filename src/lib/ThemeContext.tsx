@@ -26,6 +26,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const savedTheme = localStorage.getItem('theme');
     const savedFont = localStorage.getItem('font');
     const darkMode = localStorage.getItem('darkMode') === 'true';
+    const fontScale = localStorage.getItem('fontScale');
     
     if (savedTheme) setThemeState(savedTheme);
     if (savedFont) setFontState(savedFont);
@@ -33,6 +34,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     // Apply dark mode if enabled
     if (darkMode) {
       document.documentElement.classList.add('dark');
+    }
+    
+    // Apply font scale if set
+    if (fontScale) {
+      document.documentElement.style.fontSize = `${fontScale}%`;
     }
   }, []);
 
@@ -51,6 +57,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       localStorage.setItem('theme', theme);
       localStorage.setItem('font', font);
     }
+    
+    // Apply high contrast if enabled
+    const highContrast = localStorage.getItem('highContrast') === 'true';
     
     // Apply comprehensive theme variables
     if (activeTheme === 'space') {
@@ -108,32 +117,32 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       document.documentElement.style.setProperty('--sidebar-border', '270 40% 35%');
       document.documentElement.style.setProperty('--sidebar-ring', '270 70% 70%');
     } else if (activeTheme === 'mars') {
-      // Updated Mars theme (darker, more cohesive)
-      document.documentElement.style.setProperty('--background', '10 25% 10%');  // Dark reddish background
-      document.documentElement.style.setProperty('--foreground', '10 30% 90%');  // Light text
-      document.documentElement.style.setProperty('--primary', '10 80% 55%');     // Bright Mars red
-      document.documentElement.style.setProperty('--primary-foreground', '10 10% 95%'); // White text on primary
-      document.documentElement.style.setProperty('--secondary', '20 30% 25%');   // Darker rust color
-      document.documentElement.style.setProperty('--secondary-foreground', '10 10% 95%'); // Light text on secondary
-      document.documentElement.style.setProperty('--card', '10 25% 15%');        // Slightly lighter card background
-      document.documentElement.style.setProperty('--card-foreground', '10 30% 90%'); // Light text on cards
-      document.documentElement.style.setProperty('--muted', '10 20% 20%');       // Muted background
-      document.documentElement.style.setProperty('--muted-foreground', '10 30% 70%'); // Muted text
-      document.documentElement.style.setProperty('--accent', '30 60% 40%');      // Rust accent
-      document.documentElement.style.setProperty('--accent-foreground', '10 10% 95%'); // Light text on accent
-      document.documentElement.style.setProperty('--border', '20 40% 30%');      // Border color
-      document.documentElement.style.setProperty('--input', '20 40% 30%');       // Input border color
-      document.documentElement.style.setProperty('--ring', '10 80% 55%');        // Focus ring
+      // Updated Mars Night theme (orange-red, like night on Mars)
+      document.documentElement.style.setProperty('--background', '10 60% 8%');  // Dark orange-red background
+      document.documentElement.style.setProperty('--foreground', '30 80% 85%');  // Soft amber text
+      document.documentElement.style.setProperty('--primary', '15 90% 45%');     // Bright Mars orange-red
+      document.documentElement.style.setProperty('--primary-foreground', '30 80% 95%'); // Amber text on primary
+      document.documentElement.style.setProperty('--secondary', '20 50% 25%');   // Darker rust color
+      document.documentElement.style.setProperty('--secondary-foreground', '30 80% 95%'); // Light text on secondary
+      document.documentElement.style.setProperty('--card', '10 50% 12%');        // Slightly lighter card background
+      document.documentElement.style.setProperty('--card-foreground', '30 80% 85%'); // Amber text on cards
+      document.documentElement.style.setProperty('--muted', '10 40% 18%');       // Muted background
+      document.documentElement.style.setProperty('--muted-foreground', '30 50% 70%'); // Muted text
+      document.documentElement.style.setProperty('--accent', '25 70% 35%');      // Rust accent
+      document.documentElement.style.setProperty('--accent-foreground', '30 80% 95%'); // Light text on accent
+      document.documentElement.style.setProperty('--border', '15 40% 25%');      // Border color
+      document.documentElement.style.setProperty('--input', '15 40% 25%');       // Input border color
+      document.documentElement.style.setProperty('--ring', '15 90% 45%');        // Focus ring
       
       // Sidebar colors
-      document.documentElement.style.setProperty('--sidebar-background', '10 25% 15%'); // Sidebar background
-      document.documentElement.style.setProperty('--sidebar-foreground', '10 30% 90%'); // Sidebar text color
-      document.documentElement.style.setProperty('--sidebar-primary', '10 80% 55%');    // Sidebar primary color
-      document.documentElement.style.setProperty('--sidebar-primary-foreground', '10 10% 95%'); // Text on primary
-      document.documentElement.style.setProperty('--sidebar-accent', '30 60% 40%');     // Sidebar accent
-      document.documentElement.style.setProperty('--sidebar-accent-foreground', '10 10% 95%'); // Text on accent
-      document.documentElement.style.setProperty('--sidebar-border', '20 40% 25%');     // Sidebar border
-      document.documentElement.style.setProperty('--sidebar-ring', '10 80% 55%');       // Sidebar focus ring
+      document.documentElement.style.setProperty('--sidebar-background', '10 60% 12%'); // Sidebar background
+      document.documentElement.style.setProperty('--sidebar-foreground', '30 80% 85%'); // Sidebar text color
+      document.documentElement.style.setProperty('--sidebar-primary', '15 90% 45%');    // Sidebar primary color
+      document.documentElement.style.setProperty('--sidebar-primary-foreground', '30 80% 95%'); // Text on primary
+      document.documentElement.style.setProperty('--sidebar-accent', '25 70% 35%');     // Sidebar accent
+      document.documentElement.style.setProperty('--sidebar-accent-foreground', '30 80% 95%'); // Text on accent
+      document.documentElement.style.setProperty('--sidebar-border', '15 40% 25%');     // Sidebar border
+      document.documentElement.style.setProperty('--sidebar-ring', '15 90% 45%');       // Sidebar focus ring
     } else if (activeTheme === 'ocean') {
       // Deep Ocean theme (blue/teal ocean theme)
       document.documentElement.style.setProperty('--background', '200 70% 95%');
@@ -188,6 +197,87 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       document.documentElement.style.setProperty('--sidebar-accent-foreground', '120 10% 95%');
       document.documentElement.style.setProperty('--sidebar-border', '80 40% 75%');
       document.documentElement.style.setProperty('--sidebar-ring', '120 50% 45%');
+    } else if (activeTheme === 'sunset') {
+      // Sunset theme (orange/purple sunset colors)
+      document.documentElement.style.setProperty('--background', '25 100% 97%');
+      document.documentElement.style.setProperty('--foreground', '280 30% 25%');
+      document.documentElement.style.setProperty('--primary', '25 95% 60%');
+      document.documentElement.style.setProperty('--primary-foreground', '0 0% 100%');
+      document.documentElement.style.setProperty('--secondary', '280 60% 60%');
+      document.documentElement.style.setProperty('--secondary-foreground', '0 0% 100%');
+      document.documentElement.style.setProperty('--card', '25 100% 99%');
+      document.documentElement.style.setProperty('--card-foreground', '280 30% 25%');
+      document.documentElement.style.setProperty('--muted', '25 30% 90%');
+      document.documentElement.style.setProperty('--muted-foreground', '280 20% 40%');
+      document.documentElement.style.setProperty('--accent', '280 60% 60%');
+      document.documentElement.style.setProperty('--accent-foreground', '0 0% 100%');
+      document.documentElement.style.setProperty('--border', '25 50% 85%');
+      document.documentElement.style.setProperty('--input', '25 50% 85%');
+      document.documentElement.style.setProperty('--ring', '25 95% 60%');
+      
+      // Sidebar colors
+      document.documentElement.style.setProperty('--sidebar-background', '25 100% 95%');
+      document.documentElement.style.setProperty('--sidebar-foreground', '280 30% 25%');
+      document.documentElement.style.setProperty('--sidebar-primary', '25 95% 60%');
+      document.documentElement.style.setProperty('--sidebar-primary-foreground', '0 0% 100%');
+      document.documentElement.style.setProperty('--sidebar-accent', '280 60% 60%');
+      document.documentElement.style.setProperty('--sidebar-accent-foreground', '0 0% 100%');
+      document.documentElement.style.setProperty('--sidebar-border', '25 50% 85%');
+      document.documentElement.style.setProperty('--sidebar-ring', '25 95% 60%');
+    } else if (activeTheme === 'midnight') {
+      // Midnight theme (dark blue/purple night theme)
+      document.documentElement.style.setProperty('--background', '230 50% 5%');
+      document.documentElement.style.setProperty('--foreground', '230 15% 85%');
+      document.documentElement.style.setProperty('--primary', '230 80% 65%');
+      document.documentElement.style.setProperty('--primary-foreground', '230 10% 95%');
+      document.documentElement.style.setProperty('--secondary', '250 50% 30%');
+      document.documentElement.style.setProperty('--secondary-foreground', '230 10% 95%');
+      document.documentElement.style.setProperty('--card', '230 50% 8%');
+      document.documentElement.style.setProperty('--card-foreground', '230 15% 85%');
+      document.documentElement.style.setProperty('--muted', '230 30% 15%');
+      document.documentElement.style.setProperty('--muted-foreground', '230 15% 65%');
+      document.documentElement.style.setProperty('--accent', '250 50% 40%');
+      document.documentElement.style.setProperty('--accent-foreground', '230 10% 95%');
+      document.documentElement.style.setProperty('--border', '230 30% 15%');
+      document.documentElement.style.setProperty('--input', '230 30% 15%');
+      document.documentElement.style.setProperty('--ring', '230 80% 65%');
+      
+      // Sidebar colors
+      document.documentElement.style.setProperty('--sidebar-background', '230 50% 10%');
+      document.documentElement.style.setProperty('--sidebar-foreground', '230 15% 85%');
+      document.documentElement.style.setProperty('--sidebar-primary', '230 80% 65%');
+      document.documentElement.style.setProperty('--sidebar-primary-foreground', '230 10% 95%');
+      document.documentElement.style.setProperty('--sidebar-accent', '250 50% 40%');
+      document.documentElement.style.setProperty('--sidebar-accent-foreground', '230 10% 95%');
+      document.documentElement.style.setProperty('--sidebar-border', '230 30% 20%');
+      document.documentElement.style.setProperty('--sidebar-ring', '230 80% 65%');
+    } else if (activeTheme === 'retro') {
+      // Retro theme (vintage colors)
+      document.documentElement.style.setProperty('--background', '40 30% 92%');
+      document.documentElement.style.setProperty('--foreground', '20 30% 25%');
+      document.documentElement.style.setProperty('--primary', '20 70% 40%');
+      document.documentElement.style.setProperty('--primary-foreground', '40 30% 95%');
+      document.documentElement.style.setProperty('--secondary', '180 15% 60%');
+      document.documentElement.style.setProperty('--secondary-foreground', '20 30% 25%');
+      document.documentElement.style.setProperty('--card', '40 30% 95%');
+      document.documentElement.style.setProperty('--card-foreground', '20 30% 25%');
+      document.documentElement.style.setProperty('--muted', '40 20% 85%');
+      document.documentElement.style.setProperty('--muted-foreground', '20 20% 40%');
+      document.documentElement.style.setProperty('--accent', '180 15% 60%');
+      document.documentElement.style.setProperty('--accent-foreground', '20 30% 25%');
+      document.documentElement.style.setProperty('--border', '40 30% 80%');
+      document.documentElement.style.setProperty('--input', '40 30% 80%');
+      document.documentElement.style.setProperty('--ring', '20 70% 40%');
+      
+      // Sidebar colors
+      document.documentElement.style.setProperty('--sidebar-background', '40 30% 90%');
+      document.documentElement.style.setProperty('--sidebar-foreground', '20 30% 25%');
+      document.documentElement.style.setProperty('--sidebar-primary', '20 70% 40%');
+      document.documentElement.style.setProperty('--sidebar-primary-foreground', '40 30% 95%');
+      document.documentElement.style.setProperty('--sidebar-accent', '180 15% 60%');
+      document.documentElement.style.setProperty('--sidebar-accent-foreground', '20 30% 25%');
+      document.documentElement.style.setProperty('--sidebar-border', '40 30% 80%');
+      document.documentElement.style.setProperty('--sidebar-ring', '20 70% 40%');
     } else {
       // Default theme (pink/purple love theme)
       document.documentElement.style.setProperty('--background', '340 100% 99%');
@@ -217,10 +307,25 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       document.documentElement.style.setProperty('--sidebar-ring', '340 90% 68%');
     }
     
+    // Apply high contrast if enabled
+    if (highContrast) {
+      document.documentElement.style.setProperty('--foreground', '0 0% 0%');
+      document.documentElement.style.setProperty('--card-foreground', '0 0% 0%');
+      document.documentElement.style.setProperty('--muted-foreground', '0 0% 20%');
+      document.documentElement.style.setProperty('--primary', '210 100% 35%');
+      document.documentElement.style.setProperty('--primary-foreground', '0 0% 100%');
+      document.documentElement.style.setProperty('--secondary', '0 0% 20%');
+      document.documentElement.style.setProperty('--secondary-foreground', '0 0% 100%');
+      document.documentElement.style.setProperty('--accent-foreground', '0 0% 100%');
+      document.documentElement.style.setProperty('--border', '0 0% 40%');
+    }
+    
     // Apply dark mode if enabled
     const isDarkMode = localStorage.getItem('darkMode') === 'true';
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
   }, [theme, font, previewTheme, previewFont]);
 

@@ -118,6 +118,51 @@ export default {
 					800: '#991B1B',
 					900: '#7F1D1D',
 					950: '#450A0A'
+				},
+				amber: {
+					50: '#FFFBEB',
+					100: '#FEF3C7',
+					200: '#FDE68A',
+					300: '#FCD34D',
+					400: '#FBBF24',
+					500: '#F59E0B',
+					600: '#D97706',
+					700: '#B45309',
+					800: '#92400E',
+					900: '#78350F'
+				},
+				sunset: {
+					100: '#FFEDD5',
+					200: '#FED7AA',
+					300: '#FDBA74',
+					400: '#FB923C',
+					500: '#F97316',
+					600: '#EA580C',
+					700: '#C2410C',
+					800: '#9A3412',
+					900: '#7C2D12'
+				},
+				midnight: {
+					100: '#E0E7FF',
+					200: '#C7D2FE',
+					300: '#A5B4FC',
+					400: '#818CF8',
+					500: '#6366F1',
+					600: '#4F46E5',
+					700: '#4338CA',
+					800: '#3730A3',
+					900: '#312E81'
+				},
+				retro: {
+					100: '#F5F5F0',
+					200: '#E8E5D7',
+					300: '#D5CFC0',
+					400: '#BCB5A4',
+					500: '#9B9485',
+					600: '#827D6F',
+					700: '#5E4C3E',
+					800: '#483A2F',
+					900: '#2D241F'
 				}
 			},
 			borderRadius: {
@@ -164,9 +209,12 @@ export default {
 				'purple-gradient': 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)',
 				'space-gradient': 'linear-gradient(to right, #0f0c29, #302b63, #24243e)',
 				'galaxy-gradient': 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
-				'mars-gradient': 'linear-gradient(to right, #430505, #611818, #7a1515)',
+				'mars-gradient': 'linear-gradient(to right, #431109, #611818, #300A0A)',
 				'ocean-gradient': 'linear-gradient(to right, #4facfe, #00f2fe)',
-				'forest-gradient': 'linear-gradient(to right, #56ab2f, #a8e063)'
+				'forest-gradient': 'linear-gradient(to right, #56ab2f, #a8e063)',
+				'sunset-gradient': 'linear-gradient(to right, #f97316, #c084fc)',
+				'midnight-gradient': 'linear-gradient(to right, #0c1330, #1e3a8a)',
+				'retro-gradient': 'linear-gradient(to right, #9a8478, #5e4c3e)'
 			},
 			fontFamily: {
 				'dancing': ['Dancing Script', 'cursive'],
