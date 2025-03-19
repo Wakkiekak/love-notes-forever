@@ -106,6 +106,18 @@ export default {
 					700: '#15803D',
 					800: '#166534',
 					900: '#14532D'
+				},
+				mars: {
+					100: '#FEE2E2',
+					200: '#FECACA',
+					300: '#FCA5A5',
+					400: '#F87171',
+					500: '#EF4444',
+					600: '#DC2626',
+					700: '#B91C1C',
+					800: '#991B1B',
+					900: '#7F1D1D',
+					950: '#450A0A'
 				}
 			},
 			borderRadius: {
@@ -152,7 +164,7 @@ export default {
 				'purple-gradient': 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)',
 				'space-gradient': 'linear-gradient(to right, #0f0c29, #302b63, #24243e)',
 				'galaxy-gradient': 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
-				'mars-gradient': 'linear-gradient(to right, #f83600, #f9d423)',
+				'mars-gradient': 'linear-gradient(to right, #430505, #611818, #7a1515)',
 				'ocean-gradient': 'linear-gradient(to right, #4facfe, #00f2fe)',
 				'forest-gradient': 'linear-gradient(to right, #56ab2f, #a8e063)'
 			},

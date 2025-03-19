@@ -6,7 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
@@ -77,6 +77,8 @@ const Settings = () => {
 
   const watchedTheme = form.watch('theme');
   const watchedFont = form.watch('font');
+  const watchedDarkMode = form.watch('darkMode');
+  const watchedSoundEffects = form.watch('soundEffects');
   
   useEffect(() => {
     if (watchedTheme !== theme) {
@@ -96,30 +98,92 @@ const Settings = () => {
     }
   }, [watchedFont, font, previewFont, setPreviewFont]);
 
+  useEffect(() => {
+    if (watchedDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [watchedDarkMode]);
+  
+  useEffect(() => {
+    if (watchedSoundEffects && hasUnsavedChanges) {
+      playUISound('click');
+    }
+  }, [watchedTheme, watchedFont, watchedSoundEffects, hasUnsavedChanges]);
+  
+  const playUISound = (type: 'click' | 'success' | 'notification') => {
+    if (!watchedSoundEffects) return;
+    
+    const audioMap = {
+      click: new Audio('/sounds/click.mp3'),
+      success: new Audio('/sounds/success.mp3'),
+      notification: new Audio('/sounds/notification.mp3')
+    };
+    
+    audioMap[type].volume = 0.3;
+    audioMap[type].play().catch(e => console.error("Audio play failed:", e));
+  };
+
   const onSubmit = (data: SettingsFormValues) => {
     setTheme(data.theme);
     setFont(data.font);
+    
+    localStorage.setItem('darkMode', data.darkMode ? 'true' : 'false');
+    localStorage.setItem('soundEffects', data.soundEffects ? 'true' : 'false');
+    localStorage.setItem('animationSpeed', data.animationSpeed.toString());
+    localStorage.setItem('notificationsEnabled', data.notificationsEnabled ? 'true' : 'false');
+    
     saveSettings();
     setHasUnsavedChanges(false);
+    
+    if (data.soundEffects) {
+      playUISound('success');
+    }
     
     toast({
       title: "Settings saved",
       description: "Your appearance preferences have been updated.",
     });
+    
+    if (data.notificationsEnabled) {
+      requestNotificationPermission();
+    }
+  };
+  
+  const requestNotificationPermission = () => {
+    if ('Notification' in window) {
+      if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            new Notification('Notifications Enabled', {
+              body: 'You will now receive notifications for new love letters.',
+              icon: '/favicon.ico'
+            });
+          }
+        });
+      } else if (Notification.permission === 'granted') {
+        new Notification('Settings Updated', {
+          body: 'Your settings have been saved successfully!',
+          icon: '/favicon.ico'
+        });
+      }
+    }
   };
   
   const cancelPreview = () => {
     form.reset({
       theme,
       font,
-      animationSpeed: 50,
-      darkMode: false,
-      notificationsEnabled: true,
-      soundEffects: false,
+      animationSpeed: parseInt(localStorage.getItem('animationSpeed') || '50'),
+      darkMode: localStorage.getItem('darkMode') === 'true',
+      notificationsEnabled: localStorage.getItem('notificationsEnabled') === 'true',
+      soundEffects: localStorage.getItem('soundEffects') === 'true',
     });
     setPreviewTheme(null);
     setPreviewFont(null);
     setHasUnsavedChanges(false);
+    document.documentElement.classList.remove('dark');
   };
 
   const getThemeCardClass = (themeId: string) => {
@@ -132,7 +196,7 @@ const Settings = () => {
     } else if (themeId === 'galaxy') {
       bgClass = 'bg-[#4C1D95] text-white';
     } else if (themeId === 'mars') {
-      bgClass = 'bg-[#FCA5A5] text-[#7c2d12]';
+      bgClass = 'bg-[#221F26] text-white';
     } else if (themeId === 'ocean') {
       bgClass = 'bg-[#BAE6FD] text-[#0c4a6e]';
     } else if (themeId === 'forest') {
@@ -166,23 +230,29 @@ const Settings = () => {
                     <FormLabel className="text-card-foreground">Choose a color theme</FormLabel>
                     <FormControl>
                       <RadioGroup
-                        onValueChange={field.onChange}
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                          if (watchedSoundEffects) playUISound('click');
+                        }}
                         defaultValue={field.value}
                         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
                       >
                         {themeOptions.map((themeOption) => (
                           <div
                             key={themeOption.id}
-                            className={`flex items-center space-x-2 p-3 rounded-lg cursor-pointer transition-all ${getThemeCardClass(themeOption.id)}`}
-                            onClick={() => field.onChange(themeOption.id)}
+                            className={`flex items-center space-x-2 p-3 rounded-lg cursor-pointer transition-all ${getThemeCardClass(themeOption.id)} h-16 w-full`}
+                            onClick={() => {
+                              field.onChange(themeOption.id);
+                              if (watchedSoundEffects) playUISound('click');
+                            }}
                           >
                             <RadioGroupItem value={themeOption.id} id={`theme-${themeOption.id}`} />
-                            <div className="flex flex-col">
+                            <div className="flex flex-col truncate">
                               <div className="flex items-center">
                                 <span className="text-xl mr-2">{themeOption.icon}</span>
-                                <span className="font-medium">{themeOption.name}</span>
+                                <span className="font-medium whitespace-nowrap">{themeOption.name}</span>
                               </div>
-                              <span className="text-xs opacity-75">{themeOption.description}</span>
+                              <span className="text-xs opacity-75 truncate">{themeOption.description}</span>
                             </div>
                           </div>
                         ))}
@@ -203,7 +273,10 @@ const Settings = () => {
                     <FormLabel className="text-card-foreground">Choose a font family</FormLabel>
                     <FormControl>
                       <RadioGroup
-                        onValueChange={field.onChange}
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                          if (watchedSoundEffects) playUISound('click');
+                        }}
                         defaultValue={field.value}
                         className="grid grid-cols-1 gap-4"
                       >
@@ -215,7 +288,10 @@ const Settings = () => {
                                 ? 'border-primary bg-primary/5'
                                 : 'border-muted hover:border-primary/50'
                             }`}
-                            onClick={() => field.onChange(fontOption.id)}
+                            onClick={() => {
+                              field.onChange(fontOption.id);
+                              if (watchedSoundEffects) playUISound('click');
+                            }}
                           >
                             <RadioGroupItem value={fontOption.id} id={`font-${fontOption.id}`} />
                             <div className="flex flex-col">
@@ -254,7 +330,11 @@ const Settings = () => {
                           max={100}
                           step={10}
                           defaultValue={[field.value]}
-                          onValueChange={(values) => field.onChange(values[0])}
+                          onValueChange={(values) => {
+                            field.onChange(values[0]);
+                            setHasUnsavedChanges(true);
+                            if (watchedSoundEffects) playUISound('click');
+                          }}
                           className="py-4"
                         />
                       </FormControl>
@@ -279,7 +359,11 @@ const Settings = () => {
                       <FormControl>
                         <Switch
                           checked={field.value}
-                          onCheckedChange={field.onChange}
+                          onCheckedChange={(checked) => {
+                            field.onChange(checked);
+                            setHasUnsavedChanges(true);
+                            if (watchedSoundEffects) playUISound('click');
+                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -309,7 +393,14 @@ const Settings = () => {
                       <FormControl>
                         <Switch
                           checked={field.value}
-                          onCheckedChange={field.onChange}
+                          onCheckedChange={(checked) => {
+                            field.onChange(checked);
+                            setHasUnsavedChanges(true);
+                            if (watchedSoundEffects) playUISound('click');
+                            if (checked) {
+                              requestNotificationPermission();
+                            }
+                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -333,7 +424,13 @@ const Settings = () => {
                       <FormControl>
                         <Switch
                           checked={field.value}
-                          onCheckedChange={field.onChange}
+                          onCheckedChange={(checked) => {
+                            field.onChange(checked);
+                            setHasUnsavedChanges(true);
+                            if (checked) {
+                              playUISound('click');
+                            }
+                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -358,6 +455,7 @@ const Settings = () => {
               <Button 
                 type="submit" 
                 className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground flex items-center justify-center"
+                onClick={() => watchedSoundEffects && playUISound('click')}
               >
                 <Save className="mr-2 h-4 w-4" />
                 Save Settings

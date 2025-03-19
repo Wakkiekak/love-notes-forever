@@ -25,9 +25,15 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     const savedFont = localStorage.getItem('font');
+    const darkMode = localStorage.getItem('darkMode') === 'true';
     
     if (savedTheme) setThemeState(savedTheme);
     if (savedFont) setFontState(savedFont);
+    
+    // Apply dark mode if enabled
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    }
   }, []);
 
   // Apply theme and font whenever they change or when previewing
@@ -102,32 +108,32 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       document.documentElement.style.setProperty('--sidebar-border', '270 40% 35%');
       document.documentElement.style.setProperty('--sidebar-ring', '270 70% 70%');
     } else if (activeTheme === 'mars') {
-      // Mars Red theme (warm red/orange Mars theme)
-      document.documentElement.style.setProperty('--background', '10 30% 95%');
-      document.documentElement.style.setProperty('--foreground', '10 30% 20%');
-      document.documentElement.style.setProperty('--primary', '10 80% 55%');
-      document.documentElement.style.setProperty('--primary-foreground', '10 10% 95%');
-      document.documentElement.style.setProperty('--secondary', '20 60% 70%');
-      document.documentElement.style.setProperty('--secondary-foreground', '20 10% 20%');
-      document.documentElement.style.setProperty('--card', '10 30% 97%');
-      document.documentElement.style.setProperty('--card-foreground', '10 30% 20%');
-      document.documentElement.style.setProperty('--muted', '10 20% 85%');
-      document.documentElement.style.setProperty('--muted-foreground', '10 30% 40%');
-      document.documentElement.style.setProperty('--accent', '30 80% 60%');
-      document.documentElement.style.setProperty('--accent-foreground', '10 10% 95%');
-      document.documentElement.style.setProperty('--border', '20 60% 80%');
-      document.documentElement.style.setProperty('--input', '20 60% 80%');
-      document.documentElement.style.setProperty('--ring', '10 80% 55%');
+      // Updated Mars theme (darker, more cohesive)
+      document.documentElement.style.setProperty('--background', '10 25% 10%');  // Dark reddish background
+      document.documentElement.style.setProperty('--foreground', '10 30% 90%');  // Light text
+      document.documentElement.style.setProperty('--primary', '10 80% 55%');     // Bright Mars red
+      document.documentElement.style.setProperty('--primary-foreground', '10 10% 95%'); // White text on primary
+      document.documentElement.style.setProperty('--secondary', '20 30% 25%');   // Darker rust color
+      document.documentElement.style.setProperty('--secondary-foreground', '10 10% 95%'); // Light text on secondary
+      document.documentElement.style.setProperty('--card', '10 25% 15%');        // Slightly lighter card background
+      document.documentElement.style.setProperty('--card-foreground', '10 30% 90%'); // Light text on cards
+      document.documentElement.style.setProperty('--muted', '10 20% 20%');       // Muted background
+      document.documentElement.style.setProperty('--muted-foreground', '10 30% 70%'); // Muted text
+      document.documentElement.style.setProperty('--accent', '30 60% 40%');      // Rust accent
+      document.documentElement.style.setProperty('--accent-foreground', '10 10% 95%'); // Light text on accent
+      document.documentElement.style.setProperty('--border', '20 40% 30%');      // Border color
+      document.documentElement.style.setProperty('--input', '20 40% 30%');       // Input border color
+      document.documentElement.style.setProperty('--ring', '10 80% 55%');        // Focus ring
       
       // Sidebar colors
-      document.documentElement.style.setProperty('--sidebar-background', '10 30% 90%');
-      document.documentElement.style.setProperty('--sidebar-foreground', '10 30% 20%');
-      document.documentElement.style.setProperty('--sidebar-primary', '10 80% 55%');
-      document.documentElement.style.setProperty('--sidebar-primary-foreground', '10 10% 95%');
-      document.documentElement.style.setProperty('--sidebar-accent', '30 80% 60%');
-      document.documentElement.style.setProperty('--sidebar-accent-foreground', '10 10% 95%');
-      document.documentElement.style.setProperty('--sidebar-border', '20 60% 75%');
-      document.documentElement.style.setProperty('--sidebar-ring', '10 80% 55%');
+      document.documentElement.style.setProperty('--sidebar-background', '10 25% 15%'); // Sidebar background
+      document.documentElement.style.setProperty('--sidebar-foreground', '10 30% 90%'); // Sidebar text color
+      document.documentElement.style.setProperty('--sidebar-primary', '10 80% 55%');    // Sidebar primary color
+      document.documentElement.style.setProperty('--sidebar-primary-foreground', '10 10% 95%'); // Text on primary
+      document.documentElement.style.setProperty('--sidebar-accent', '30 60% 40%');     // Sidebar accent
+      document.documentElement.style.setProperty('--sidebar-accent-foreground', '10 10% 95%'); // Text on accent
+      document.documentElement.style.setProperty('--sidebar-border', '20 40% 25%');     // Sidebar border
+      document.documentElement.style.setProperty('--sidebar-ring', '10 80% 55%');       // Sidebar focus ring
     } else if (activeTheme === 'ocean') {
       // Deep Ocean theme (blue/teal ocean theme)
       document.documentElement.style.setProperty('--background', '200 70% 95%');
@@ -209,6 +215,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       document.documentElement.style.setProperty('--sidebar-accent-foreground', '340 10% 20%');
       document.documentElement.style.setProperty('--sidebar-border', '340 50% 90%');
       document.documentElement.style.setProperty('--sidebar-ring', '340 90% 68%');
+    }
+    
+    // Apply dark mode if enabled
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
     }
   }, [theme, font, previewTheme, previewFont]);
 
