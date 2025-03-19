@@ -15,17 +15,23 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const { hasNewLetterToday } = useLove();
-  const { theme } = useTheme();
+  const { theme, previewTheme } = useTheme();
+  
+  const activeTheme = previewTheme || theme;
 
   // Generate background class based on theme
   const getBackgroundClass = () => {
-    switch (theme) {
+    switch (activeTheme) {
       case 'space':
         return 'bg-gradient-to-br from-[#0B0D2D] via-[#151A45] to-[#0B0D2D]';
       case 'galaxy':
         return 'bg-gradient-to-br from-[#2E1065] via-[#4C1D95] to-[#2E1065]';
       case 'mars':
         return 'bg-gradient-to-br from-[#FEE2E2] via-[#FCA5A5] to-[#FEE2E2]';
+      case 'ocean':
+        return 'bg-gradient-to-br from-[#DBEAFE] via-[#93C5FD] to-[#DBEAFE]';
+      case 'forest':
+        return 'bg-gradient-to-br from-[#DCFCE7] via-[#86EFAC] to-[#DCFCE7]';
       default:
         return 'bg-gradient-to-br from-love-100 via-purple-100 to-love-100';
     }
@@ -48,11 +54,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className={`min-h-screen relative ${getBackgroundClass()}`}>
-      {theme === 'default' && <FloatingHearts count={15} />}
+      {activeTheme === 'default' && <FloatingHearts count={15} />}
       
       <div className="px-4 py-6 max-w-lg mx-auto relative z-10">
         {/* Mobile Navbar */}
-        <div className="fixed bottom-0 left-0 w-full bg-white border-t border-love-200 p-2 flex justify-around items-center z-50 lg:hidden">
+        <div className="fixed bottom-0 left-0 w-full bg-card border-t border-border p-2 flex justify-around items-center z-50 lg:hidden">
           {navItems.map((item) => (
             <Link 
               key={item.path} 
@@ -61,7 +67,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 "flex flex-col items-center p-2 rounded-lg transition-colors relative",
                 isActive(item.path) 
                   ? "text-primary font-medium" 
-                  : "text-gray-500 hover:text-primary"
+                  : "text-muted-foreground hover:text-primary"
               )}
             >
               {item.icon}
@@ -74,7 +80,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
 
         {/* Desktop Sidebar */}
-        <div className="hidden lg:block fixed left-4 top-1/2 transform -translate-y-1/2 bg-white border border-love-200 p-4 rounded-xl shadow-md z-50">
+        <div className="hidden lg:block fixed left-4 top-1/2 transform -translate-y-1/2 bg-sidebar border border-sidebar-border p-4 rounded-xl shadow-md z-50">
           <div className="flex flex-col items-center space-y-6">
             {navItems.map((item) => (
               <Link 
@@ -83,14 +89,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 className={cn(
                   "p-3 rounded-lg transition-all relative",
                   isActive(item.path) 
-                    ? "bg-primary/10 text-primary shadow-inner" 
-                    : "text-gray-500 hover:bg-primary/5 hover:text-primary"
+                    ? "bg-sidebar-primary/10 text-sidebar-primary shadow-inner" 
+                    : "text-sidebar-foreground hover:bg-sidebar-primary/5 hover:text-sidebar-primary"
                 )}
                 title={item.name}
               >
                 {item.icon}
                 {item.notification && (
-                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
+                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-sidebar-primary rounded-full"></span>
                 )}
               </Link>
             ))}
@@ -101,14 +107,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="fixed top-4 right-4 z-50 lg:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <button className="p-2 bg-white rounded-full shadow-md border border-love-200">
+              <button className="p-2 bg-card rounded-full shadow-md border border-border">
                 <Menu size={20} className="text-primary" />
               </button>
             </SheetTrigger>
-            <SheetContent className="bg-white">
+            <SheetContent className="bg-card border-l border-border">
               <div className="flex flex-col space-y-4 mt-8">
                 <h3 className="text-xl font-dancing text-primary">Mars & Pim</h3>
-                <p className="text-sm text-gray-600">A love app just for you ❤️</p>
+                <p className="text-sm text-muted-foreground">A love app just for you ❤️</p>
               </div>
             </SheetContent>
           </Sheet>

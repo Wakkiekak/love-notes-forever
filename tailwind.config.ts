@@ -84,6 +84,28 @@ export default {
 					700: '#5A4886',
 					800: '#473967',
 					900: '#342A48'
+				},
+				ocean: {
+					100: '#DBEAFE',
+					200: '#BFDBFE',
+					300: '#93C5FD',
+					400: '#60A5FA',
+					500: '#3B82F6',
+					600: '#2563EB',
+					700: '#1D4ED8',
+					800: '#1E40AF',
+					900: '#1E3A8A'
+				},
+				forest: {
+					100: '#DCFCE7',
+					200: '#BBF7D0',
+					300: '#86EFAC',
+					400: '#4ADE80',
+					500: '#22C55E',
+					600: '#16A34A',
+					700: '#15803D',
+					800: '#166534',
+					900: '#14532D'
 				}
 			},
 			borderRadius: {
@@ -130,7 +152,9 @@ export default {
 				'purple-gradient': 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)',
 				'space-gradient': 'linear-gradient(to right, #0f0c29, #302b63, #24243e)',
 				'galaxy-gradient': 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
-				'mars-gradient': 'linear-gradient(to right, #f83600, #f9d423)'
+				'mars-gradient': 'linear-gradient(to right, #f83600, #f9d423)',
+				'ocean-gradient': 'linear-gradient(to right, #4facfe, #00f2fe)',
+				'forest-gradient': 'linear-gradient(to right, #56ab2f, #a8e063)'
 			},
 			fontFamily: {
 				'dancing': ['Dancing Script', 'cursive'],
