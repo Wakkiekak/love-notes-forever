@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useTheme } from '@/lib/ThemeContext';
 import Layout from '@/components/Layout';
@@ -65,7 +66,6 @@ const Settings: React.FC = () => {
       case 'sunset': return 'bg-sunset-gradient';
       case 'midnight': return 'bg-midnight-gradient';
       case 'retro': return 'bg-retro-gradient';
-      case 'pastel': return 'bg-gradient-to-br from-purple-300 via-pink-200 to-blue-200';
       default: return 'bg-love-gradient';
     }
   };
@@ -78,7 +78,6 @@ const Settings: React.FC = () => {
       case 'montserrat': return 'Montserrat';
       case 'serif': return 'Serif';
       case 'fredoka': return 'Fredoka One';
-      case 'mono': return 'Roboto Mono';
       default: return 'Default';
     }
   };
@@ -218,22 +217,6 @@ const Settings: React.FC = () => {
                         </div>
                       )}
                     </div>
-                    
-                    {/* Pastel Theme */}
-                    <div 
-                      className={`theme-box ${activeTheme === 'pastel' ? 'active' : ''}`}
-                      onClick={() => handleThemeChange('pastel')}
-                    >
-                      <div className="theme-box-preview bg-gradient-to-br from-purple-300 via-pink-200 to-blue-200"></div>
-                      <div className="theme-box-label">
-                        <span className="text-sm font-medium">Pastel</span>
-                      </div>
-                      {activeTheme === 'pastel' && (
-                        <div className="theme-box-check">
-                          <CheckCircle2 className="w-4 h-4 text-primary" />
-                        </div>
-                      )}
-                    </div>
                   </div>
                 </div>
                 
@@ -286,14 +269,6 @@ const Settings: React.FC = () => {
                       onClick={() => handleFontChange('fredoka')}
                     >
                       <span className="text-lg">Fredoka</span>
-                    </div>
-                    
-                    {/* Roboto Mono Font */}
-                    <div 
-                      className={`font-box font-mono ${activeFont === 'mono' ? 'active' : ''}`}
-                      onClick={() => handleFontChange('mono')}
-                    >
-                      <span className="text-lg">Roboto Mono</span>
                     </div>
                   </div>
                 </div>

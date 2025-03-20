@@ -118,8 +118,8 @@ const DailyMessage: React.FC = () => {
               onClick={handleOpenGift}
             >
               <div className={`gift-lid bg-gradient-to-b ${giftPrimary}`}></div>
-              <div className={`gift-box bg-gradient-to-t ${giftSecondary} flex justify-center items-center`}>
-                <Gift className="text-white w-10 h-10 z-10" />
+              <div className={`gift-box bg-gradient-to-t ${giftSecondary}`}>
+                <Gift className="text-white w-8 h-8 z-10" />
               </div>
               <div className={`gift-ribbon ${ribbonColor}`}></div>
             </div>

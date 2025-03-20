@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Fredoka+One&family=Roboto+Mono:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Fredoka+One&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,151 +6,96 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 22.2 47.4% 11.2%;
+    --background: 340 100% 99%;
+    --foreground: 340 10% 20%;
 
-    --muted: 10 0% 94.9%;
-    --muted-foreground: 22.2 47.4% 11.2%;
+    --card: 340 100% 99%;
+    --card-foreground: 340 10% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 22.2 47.4% 11.2%;
+    --popover: 340 100% 99%;
+    --popover-foreground: 340 10% 20%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 22.2 47.4% 11.2%;
+    --primary: 340 90% 68%;
+    --primary-foreground: 340 100% 99%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --secondary: 270 50% 81%;
+    --secondary-foreground: 270 45% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --muted: 340 30% 95%;
+    --muted-foreground: 340 10% 45%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 22.2 47.4% 11.2%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 22.2 47.4% 11.2%;
+    --accent: 270 50% 81%;
+    --accent-foreground: 270 45% 25%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --ring: 222.2 84.3% 29.8%;
+    --border: 340 50% 90%;
+    --input: 340 50% 90%;
+    --ring: 340 90% 68%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    /* Sidebar colors */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 22.2 47.4% 11.2%;
-    --sidebar-primary: 222.2 47.4% 11.2%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 210 40% 96.1%;
-    --sidebar-accent-foreground: 22.2 47.4% 11.2%;
-    --sidebar-border: 214.3 31.8% 91.4%;
-    --sidebar-ring: 222.2 84.3% 29.8%;
-  }
-
-  .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 210 40% 98%;
-
-    --muted: 212.5 21.5% 12.1%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --popover: 20 14.3% 4.1%;
-    --popover-foreground: 210 40% 98%;
-
-    --card: 20 14.3% 4.1%;
-    --card-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 212.5 21.5% 12.1%;
-    --secondary-foreground: 210 40% 98%;
-
-    --accent: 212.5 21.5% 12.1%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --ring: 217.2 32.6% 17.5%;
+    --sidebar-background: 340 100% 99%;
+    --sidebar-foreground: 340 10% 20%;
+    --sidebar-primary: 340 90% 68%;
+    --sidebar-primary-foreground: 340 100% 99%;
+    --sidebar-accent: 340 30% 95%;
+    --sidebar-accent-foreground: 340 10% 20%;
+    --sidebar-border: 340 50% 90%;
+    --sidebar-ring: 340 90% 68%;
   }
 
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
-  }
-  
-  /* Font classes */
-  .font-quicksand {
-    font-family: 'Quicksand', sans-serif;
-  }
-  .font-poppins {
-    font-family: 'Poppins', sans-serif;
-  }
-  .font-dancing {
-    font-family: 'Dancing Script', cursive;
-  }
-  .font-montserrat {
-    font-family: 'Montserrat', sans-serif;
-  }
-  .font-serif {
-    font-family: serif;
-  }
-  .font-fredoka {
-    font-family: 'Fredoka One', cursive;
-  }
-  .font-mono {
-    font-family: 'Roboto Mono', monospace;
+    @apply bg-background text-foreground font-quicksand;
   }
 }
 
 @layer components {
+  .love-note {
+    @apply p-6 rounded-xl bg-white border-2 border-love-200 shadow-lg relative 
+           overflow-hidden transition-all duration-300 hover:shadow-xl
+           before:content-[''] before:absolute before:inset-0 before:bg-love-gradient 
+           before:opacity-10 before:z-0;
+  }
+
   .love-card {
-    @apply rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg;
+    @apply rounded-xl bg-white border border-love-200 shadow-md overflow-hidden
+           transition-all duration-300 hover:shadow-lg;
+  }
+
+  .love-button {
+    @apply px-6 py-3 bg-love-gradient text-white rounded-full shadow-md
+           transition-all duration-300 hover:shadow-lg active:scale-95 
+           font-medium text-lg;
   }
   
-  /* Sidebar styles */
-  .sidebar {
-    @apply flex flex-col h-full bg-sidebar-background text-sidebar-foreground border-r border-sidebar-border;
+  .floating-heart {
+    @apply absolute animate-float text-love-500 opacity-70;
   }
   
-  .sidebar-header {
-    @apply p-4 border-b border-sidebar-border;
+  .paw-print-button {
+    @apply relative overflow-hidden rounded-full bg-purple-200 p-4 shadow-md
+           transition-all duration-300 hover:bg-purple-300 active:scale-95;
   }
   
-  .sidebar-nav {
-    @apply flex-1 py-4;
-  }
-  
-  .sidebar-nav-item {
-    @apply flex items-center px-4 py-2 hover:bg-accent hover:text-accent-foreground transition-colors duration-200;
-  }
-  
-  .sidebar-nav-item.active {
-    @apply bg-primary text-primary-foreground font-semibold;
-  }
-  
-  .sidebar-footer {
-    @apply p-4 border-t border-sidebar-border;
-  }
-  
-  /* Gift box styling */
   .gift-wrap {
-    @apply relative cursor-pointer transition-all duration-300 ease-in-out;
+    @apply relative mx-auto rounded-xl overflow-hidden
+           shadow-lg transition-all duration-500 transform hover:scale-105;
   }
   
   .gift-lid {
-    @apply absolute top-0 left-0 w-full h-1/3 rounded-t-md;
+    @apply absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary to-primary/80
+           transition-transform duration-700 origin-bottom;
   }
   
   .gift-box {
-    @apply absolute top-1/3 left-0 w-full h-2/3 rounded-b-md flex justify-center items-center;
+    @apply absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-secondary to-secondary/80
+           flex items-center justify-center;
   }
   
   .gift-ribbon {
@@ -160,71 +105,88 @@
            after:rounded-full after:z-10;
   }
   
-  /* Settings page styles */
+  .gift-open .gift-lid {
+    @apply -translate-y-full rotate-45;
+  }
+  
+  .gift-open .gift-ribbon {
+    @apply opacity-0;
+  }
+  
+  .timeline-card {
+    @apply relative p-4 rounded-lg border border-border bg-card shadow-sm
+           my-4 transition-all duration-300 hover:shadow-md;
+  }
+  
+  .timeline-connector {
+    @apply absolute top-0 left-4 w-0.5 h-full -mt-4 bg-primary/30;
+  }
+  
+  .mood-card {
+    @apply p-4 rounded-lg border border-border bg-card shadow-sm
+           my-2 transition-all duration-300 hover:shadow-md;
+  }
+  
+  .mood-happy { @apply bg-gradient-to-r from-yellow-100 to-yellow-50 border-yellow-200; }
+  .mood-excited { @apply bg-gradient-to-r from-orange-100 to-orange-50 border-orange-200; }
+  .mood-loved { @apply bg-gradient-to-r from-love-100 to-love-50 border-love-200; }
+  .mood-sad { @apply bg-gradient-to-r from-blue-100 to-blue-50 border-blue-200; }
+  .mood-stressed { @apply bg-gradient-to-r from-purple-100 to-purple-50 border-purple-200; }
+  .mood-neutral { @apply bg-gradient-to-r from-gray-100 to-gray-50 border-gray-200; }
+  
+  .floating-emoji {
+    @apply absolute pointer-events-none select-none opacity-70 transition-all duration-500;
+  }
+  
+  .duck-container {
+    @apply fixed w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center
+           shadow-md cursor-pointer transition-all duration-300 hover:scale-110 z-50;
+  }
+  
+  .duck-chat {
+    @apply fixed top-24 left-4 w-64 p-4 rounded-xl bg-card border border-primary/20
+           shadow-lg opacity-0 transition-all duration-300 scale-95 pointer-events-none;
+  }
+  
+  .duck-active .duck-chat {
+    @apply opacity-100 scale-100 pointer-events-auto;
+  }
+
+  /* Theme boxes for settings */
   .theme-box {
-    @apply relative rounded-md overflow-hidden border border-border hover:border-primary cursor-pointer transition-all;
+    @apply relative rounded-lg cursor-pointer transition-all overflow-hidden border-2 border-black/20;
+  }
+  
+  .theme-box:hover {
+    @apply shadow-md;
   }
   
   .theme-box.active {
-    @apply border-2 border-primary;
+    @apply ring-2 ring-primary ring-offset-2 border-black;
   }
   
   .theme-box-preview {
-    @apply h-20 w-full;
+    @apply w-full aspect-square;
   }
   
   .theme-box-label {
-    @apply p-2 text-center;
+    @apply p-2 text-center bg-black/5;
   }
   
   .theme-box-check {
     @apply absolute top-2 right-2 bg-background rounded-full p-0.5;
   }
   
+  /* Font selection boxes */
   .font-box {
-    @apply flex items-center justify-center p-4 border border-border rounded-md cursor-pointer hover:border-primary transition-all h-20;
+    @apply p-4 rounded-lg cursor-pointer text-center border border-black/10;
   }
   
   .font-box.active {
-    @apply border-2 border-primary;
+    @apply bg-primary/10 border border-primary/30;
   }
   
-  /* Background gradients for themes */
-  .bg-love-gradient {
-    @apply bg-gradient-to-br from-pink-400 to-pink-200;
-  }
-  
-  .bg-mars-gradient {
-    @apply bg-gradient-to-br from-red-500 to-orange-400;
-  }
-  
-  .bg-ocean-gradient {
-    @apply bg-gradient-to-br from-blue-500 to-cyan-300;
-  }
-  
-  .bg-forest-gradient {
-    @apply bg-gradient-to-br from-green-500 to-lime-300;
-  }
-  
-  .bg-sunset-gradient {
-    @apply bg-gradient-to-br from-orange-400 to-purple-300;
-  }
-  
-  .bg-midnight-gradient {
-    @apply bg-gradient-to-br from-indigo-600 to-blue-400;
-  }
-  
-  .bg-retro-gradient {
-    @apply bg-gradient-to-br from-amber-700 to-yellow-200;
-  }
-  
-  /* Custom animations */
-  @keyframes pulse-heart {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-  }
-  
-  .animate-pulse-heart {
-    animation: pulse-heart 0.6s ease-in-out;
+  .font-box:hover:not(.active) {
+    @apply bg-muted/80;
   }
 }
