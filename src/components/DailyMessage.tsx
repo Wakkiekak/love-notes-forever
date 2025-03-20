@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLove } from '@/lib/LoveContext';
 import { useTheme } from '@/lib/ThemeContext';
-import { Heart, Gift, Sparkles } from 'lucide-react';
+import { Heart, Gift } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSound } from '@/hooks/use-sound';
@@ -112,10 +111,10 @@ const DailyMessage: React.FC = () => {
           </button>
         </div>
         
-        <div className={`relative ${isDailyMessageOpened ? '' : 'h-48'}`}>
+        <div className={`relative ${isDailyMessageOpened ? '' : 'flex justify-center items-center'}`}>
           {!isDailyMessageOpened ? (
             <div 
-              className={`gift-wrap ${isDailyMessageOpened ? 'gift-open' : ''} max-w-[200px] h-[160px]`}
+              className={`gift-wrap ${isDailyMessageOpened ? 'gift-open' : ''} w-full h-[140px] max-w-full`}
               onClick={handleOpenGift}
             >
               <div className={`gift-lid bg-gradient-to-b ${giftPrimary}`}></div>
@@ -123,13 +122,6 @@ const DailyMessage: React.FC = () => {
                 <Gift className="text-white w-8 h-8 z-10" />
               </div>
               <div className={`gift-ribbon ${ribbonColor}`}></div>
-              <motion.div
-                className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
-                animate={{ y: [0, -5, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-              >
-                <Sparkles className="text-white/80 w-6 h-6" />
-              </motion.div>
             </div>
           ) : (
             <AnimatePresence>
