@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useLove } from '@/lib/LoveContext';
 import { useTheme } from '@/lib/ThemeContext';
-import { Heart, Dove } from 'lucide-react';
+import { Heart, Bird } from 'lucide-react';
 
 interface EmojiPosition {
   id: number;
@@ -13,7 +13,7 @@ interface EmojiPosition {
   speed: number;
   rotation: number;
   isIcon?: boolean;
-  iconType?: 'heart' | 'dove';
+  iconType?: 'heart' | 'bird';
 }
 
 const FloatingEmojis: React.FC = () => {
@@ -34,7 +34,7 @@ const FloatingEmojis: React.FC = () => {
     for (let i = 0; i < count; i++) {
       // Determine if this should be a Lucide icon or an emoji
       const useIcon = Math.random() > 0.5;
-      const iconType = Math.random() > 0.5 ? 'heart' : 'dove';
+      const iconType = Math.random() > 0.5 ? 'heart' : 'bird';
       
       newEmojis.push({
         id: i,
@@ -107,7 +107,7 @@ const FloatingEmojis: React.FC = () => {
               emoji.iconType === 'heart' ? (
                 <Heart size={emoji.size * 16} fill={getThemeColor()} className="opacity-40" />
               ) : (
-                <Dove size={emoji.size * 16} fill={getThemeColor()} className="opacity-40" />
+                <Bird size={emoji.size * 16} fill={getThemeColor()} className="opacity-40" />
               )
             ) : (
               emoji.emoji

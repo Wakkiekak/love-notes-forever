@@ -45,7 +45,7 @@ const Settings: React.FC = () => {
     toast({
       title: "Settings Saved",
       description: "Your preferences have been updated successfully!",
-      variant: "success",
+      variant: "default",
     });
     
     playSound('success');
