@@ -44,8 +44,8 @@ const Index = () => {
       <Layout>
         <FloatingEmojis />
         <HomePage />
-        <DuckChatbot />
       </Layout>
+      <DuckChatbot />
     </LoveProvider>
   );
 };

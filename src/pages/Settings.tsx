@@ -108,16 +108,15 @@ const Settings: React.FC = () => {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {/* Default Love Theme */}
                     <div 
-                      className={`relative rounded-lg cursor-pointer transition-all overflow-hidden 
-                        ${activeTheme === 'default' ? 'ring-2 ring-primary ring-offset-2' : 'hover:shadow-md'}`}
+                      className={`theme-box ${activeTheme === 'default' ? 'active' : ''}`}
                       onClick={() => handleThemeChange('default')}
                     >
-                      <div className="w-full aspect-square bg-love-gradient"></div>
-                      <div className="p-2 text-center">
+                      <div className="theme-box-preview bg-love-gradient"></div>
+                      <div className="theme-box-label">
                         <span className="text-sm font-medium">Love</span>
                       </div>
                       {activeTheme === 'default' && (
-                        <div className="absolute top-2 right-2 bg-background rounded-full p-0.5">
+                        <div className="theme-box-check">
                           <CheckCircle2 className="w-4 h-4 text-primary" />
                         </div>
                       )}
@@ -125,16 +124,15 @@ const Settings: React.FC = () => {
                     
                     {/* Mars Theme */}
                     <div 
-                      className={`relative rounded-lg cursor-pointer transition-all overflow-hidden 
-                        ${activeTheme === 'mars' ? 'ring-2 ring-primary ring-offset-2' : 'hover:shadow-md'}`}
+                      className={`theme-box ${activeTheme === 'mars' ? 'active' : ''}`}
                       onClick={() => handleThemeChange('mars')}
                     >
-                      <div className="w-full aspect-square bg-mars-gradient"></div>
-                      <div className="p-2 text-center">
+                      <div className="theme-box-preview bg-mars-gradient"></div>
+                      <div className="theme-box-label">
                         <span className="text-sm font-medium">Mars</span>
                       </div>
                       {activeTheme === 'mars' && (
-                        <div className="absolute top-2 right-2 bg-background rounded-full p-0.5">
+                        <div className="theme-box-check">
                           <CheckCircle2 className="w-4 h-4 text-primary" />
                         </div>
                       )}
@@ -142,16 +140,15 @@ const Settings: React.FC = () => {
                     
                     {/* Ocean Theme */}
                     <div 
-                      className={`relative rounded-lg cursor-pointer transition-all overflow-hidden 
-                        ${activeTheme === 'ocean' ? 'ring-2 ring-primary ring-offset-2' : 'hover:shadow-md'}`}
+                      className={`theme-box ${activeTheme === 'ocean' ? 'active' : ''}`}
                       onClick={() => handleThemeChange('ocean')}
                     >
-                      <div className="w-full aspect-square bg-ocean-gradient"></div>
-                      <div className="p-2 text-center">
+                      <div className="theme-box-preview bg-ocean-gradient"></div>
+                      <div className="theme-box-label">
                         <span className="text-sm font-medium">Ocean</span>
                       </div>
                       {activeTheme === 'ocean' && (
-                        <div className="absolute top-2 right-2 bg-background rounded-full p-0.5">
+                        <div className="theme-box-check">
                           <CheckCircle2 className="w-4 h-4 text-primary" />
                         </div>
                       )}
@@ -159,16 +156,15 @@ const Settings: React.FC = () => {
                     
                     {/* Forest Theme */}
                     <div 
-                      className={`relative rounded-lg cursor-pointer transition-all overflow-hidden 
-                        ${activeTheme === 'forest' ? 'ring-2 ring-primary ring-offset-2' : 'hover:shadow-md'}`}
+                      className={`theme-box ${activeTheme === 'forest' ? 'active' : ''}`}
                       onClick={() => handleThemeChange('forest')}
                     >
-                      <div className="w-full aspect-square bg-forest-gradient"></div>
-                      <div className="p-2 text-center">
+                      <div className="theme-box-preview bg-forest-gradient"></div>
+                      <div className="theme-box-label">
                         <span className="text-sm font-medium">Forest</span>
                       </div>
                       {activeTheme === 'forest' && (
-                        <div className="absolute top-2 right-2 bg-background rounded-full p-0.5">
+                        <div className="theme-box-check">
                           <CheckCircle2 className="w-4 h-4 text-primary" />
                         </div>
                       )}
@@ -176,16 +172,15 @@ const Settings: React.FC = () => {
                     
                     {/* Sunset Theme */}
                     <div 
-                      className={`relative rounded-lg cursor-pointer transition-all overflow-hidden 
-                        ${activeTheme === 'sunset' ? 'ring-2 ring-primary ring-offset-2' : 'hover:shadow-md'}`}
+                      className={`theme-box ${activeTheme === 'sunset' ? 'active' : ''}`}
                       onClick={() => handleThemeChange('sunset')}
                     >
-                      <div className="w-full aspect-square bg-sunset-gradient"></div>
-                      <div className="p-2 text-center">
+                      <div className="theme-box-preview bg-sunset-gradient"></div>
+                      <div className="theme-box-label">
                         <span className="text-sm font-medium">Sunset</span>
                       </div>
                       {activeTheme === 'sunset' && (
-                        <div className="absolute top-2 right-2 bg-background rounded-full p-0.5">
+                        <div className="theme-box-check">
                           <CheckCircle2 className="w-4 h-4 text-primary" />
                         </div>
                       )}
@@ -193,16 +188,15 @@ const Settings: React.FC = () => {
                     
                     {/* Midnight Theme */}
                     <div 
-                      className={`relative rounded-lg cursor-pointer transition-all overflow-hidden 
-                        ${activeTheme === 'midnight' ? 'ring-2 ring-primary ring-offset-2' : 'hover:shadow-md'}`}
+                      className={`theme-box ${activeTheme === 'midnight' ? 'active' : ''}`}
                       onClick={() => handleThemeChange('midnight')}
                     >
-                      <div className="w-full aspect-square bg-midnight-gradient"></div>
-                      <div className="p-2 text-center">
+                      <div className="theme-box-preview bg-midnight-gradient"></div>
+                      <div className="theme-box-label">
                         <span className="text-sm font-medium">Midnight</span>
                       </div>
                       {activeTheme === 'midnight' && (
-                        <div className="absolute top-2 right-2 bg-background rounded-full p-0.5">
+                        <div className="theme-box-check">
                           <CheckCircle2 className="w-4 h-4 text-primary" />
                         </div>
                       )}
@@ -210,16 +204,15 @@ const Settings: React.FC = () => {
                     
                     {/* Retro Theme */}
                     <div 
-                      className={`relative rounded-lg cursor-pointer transition-all overflow-hidden 
-                        ${activeTheme === 'retro' ? 'ring-2 ring-primary ring-offset-2' : 'hover:shadow-md'}`}
+                      className={`theme-box ${activeTheme === 'retro' ? 'active' : ''}`}
                       onClick={() => handleThemeChange('retro')}
                     >
-                      <div className="w-full aspect-square bg-retro-gradient"></div>
-                      <div className="p-2 text-center">
+                      <div className="theme-box-preview bg-retro-gradient"></div>
+                      <div className="theme-box-label">
                         <span className="text-sm font-medium">Retro</span>
                       </div>
                       {activeTheme === 'retro' && (
-                        <div className="absolute top-2 right-2 bg-background rounded-full p-0.5">
+                        <div className="theme-box-check">
                           <CheckCircle2 className="w-4 h-4 text-primary" />
                         </div>
                       )}
@@ -232,8 +225,7 @@ const Settings: React.FC = () => {
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {/* Quicksand Font */}
                     <div 
-                      className={`p-4 rounded-lg cursor-pointer text-center font-quicksand 
-                        ${activeFont === 'quicksand' ? 'bg-primary/10 border border-primary/30' : 'bg-muted hover:bg-muted/80'}`}
+                      className={`font-box font-quicksand ${activeFont === 'quicksand' ? 'active' : ''}`}
                       onClick={() => handleFontChange('quicksand')}
                     >
                       <span className="text-lg">Quicksand</span>
@@ -241,8 +233,7 @@ const Settings: React.FC = () => {
                     
                     {/* Poppins Font */}
                     <div 
-                      className={`p-4 rounded-lg cursor-pointer text-center font-poppins 
-                        ${activeFont === 'poppins' ? 'bg-primary/10 border border-primary/30' : 'bg-muted hover:bg-muted/80'}`}
+                      className={`font-box font-poppins ${activeFont === 'poppins' ? 'active' : ''}`}
                       onClick={() => handleFontChange('poppins')}
                     >
                       <span className="text-lg">Poppins</span>
@@ -250,8 +241,7 @@ const Settings: React.FC = () => {
                     
                     {/* Dancing Script Font */}
                     <div 
-                      className={`p-4 rounded-lg cursor-pointer text-center font-dancing 
-                        ${activeFont === 'dancing' ? 'bg-primary/10 border border-primary/30' : 'bg-muted hover:bg-muted/80'}`}
+                      className={`font-box font-dancing ${activeFont === 'dancing' ? 'active' : ''}`}
                       onClick={() => handleFontChange('dancing')}
                     >
                       <span className="text-lg">Dancing Script</span>
@@ -259,8 +249,7 @@ const Settings: React.FC = () => {
                     
                     {/* Montserrat Font */}
                     <div 
-                      className={`p-4 rounded-lg cursor-pointer text-center font-montserrat 
-                        ${activeFont === 'montserrat' ? 'bg-primary/10 border border-primary/30' : 'bg-muted hover:bg-muted/80'}`}
+                      className={`font-box font-montserrat ${activeFont === 'montserrat' ? 'active' : ''}`}
                       onClick={() => handleFontChange('montserrat')}
                     >
                       <span className="text-lg">Montserrat</span>
@@ -268,8 +257,7 @@ const Settings: React.FC = () => {
                     
                     {/* Serif Font */}
                     <div 
-                      className={`p-4 rounded-lg cursor-pointer text-center font-serif 
-                        ${activeFont === 'serif' ? 'bg-primary/10 border border-primary/30' : 'bg-muted hover:bg-muted/80'}`}
+                      className={`font-box font-serif ${activeFont === 'serif' ? 'active' : ''}`}
                       onClick={() => handleFontChange('serif')}
                     >
                       <span className="text-lg">Serif</span>
@@ -277,8 +265,7 @@ const Settings: React.FC = () => {
                     
                     {/* Fredoka One Font */}
                     <div 
-                      className={`p-4 rounded-lg cursor-pointer text-center font-fredoka 
-                        ${activeFont === 'fredoka' ? 'bg-primary/10 border border-primary/30' : 'bg-muted hover:bg-muted/80'}`}
+                      className={`font-box font-fredoka ${activeFont === 'fredoka' ? 'active' : ''}`}
                       onClick={() => handleFontChange('fredoka')}
                     >
                       <span className="text-lg">Fredoka</span>

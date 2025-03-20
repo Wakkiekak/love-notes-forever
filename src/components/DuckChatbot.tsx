@@ -60,7 +60,7 @@ const DuckChatbot: React.FC = () => {
   }, []);
 
   return (
-    <div className={`duck-container ${isActive ? 'duck-active' : ''} z-50`}>
+    <div className={`duck-container top-4 left-4 bottom-auto right-auto ${isActive ? 'duck-active' : ''} z-50`}>
       <button 
         onClick={toggleActive}
         className="w-full h-full flex items-center justify-center"
@@ -77,7 +77,7 @@ const DuckChatbot: React.FC = () => {
       <AnimatePresence>
         {isActive && (
           <motion.div
-            className="duck-chat z-50"
+            className="duck-chat !left-0 !right-auto z-50"
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 10 }}
