@@ -1,4 +1,3 @@
-
 import { format, differenceInDays, addDays, isAfter, isBefore, isToday } from 'date-fns';
 
 // Types
@@ -33,6 +32,27 @@ export interface AnimalFact {
   id: number;
   fact: string;
   animal: string;
+}
+
+export interface TimelineEvent {
+  id: number;
+  date: Date;
+  title: string;
+  description: string;
+  emoji?: string;
+}
+
+export interface MoodEntry {
+  id: number;
+  date: Date;
+  mood: 'happy' | 'excited' | 'loved' | 'sad' | 'stressed' | 'neutral';
+  note: string;
+}
+
+export interface DuckMessage {
+  id: number;
+  message: string;
+  type: 'greeting' | 'encouragement' | 'fun' | 'quack';
 }
 
 // First meeting date - Mars & Pim
@@ -112,7 +132,7 @@ export const surpriseMessages: LoveMessage[] = [
   },
   { 
     id: 104, 
-    content: "If I had a star for every time you made me smile, I would have the milkey way.", 
+    content: "If I had a star for every time you made me smile, I would have the milky way.", 
     type: 'surprise' 
   },
   { 
@@ -191,7 +211,7 @@ Pim 💖`,
     title: "Just Because I Love You",
     content: `Mars,
 
-I just wanted to say how much I apprieciate you ❤❤
+I just wanted to say how much I appriecate you ❤❤
 
 Our simple chats mean so much to me. I hope they do the same to you. Your the best.
 
@@ -392,6 +412,36 @@ export const animalFacts: AnimalFact[] = [
   }
 ];
 
+// Duck chatbot messages
+export const duckMessages: DuckMessage[] = [
+  { id: 1, message: "Hello! I'm your little duck friend! 🦆", type: "greeting" },
+  { id: 2, message: "Quack! How are you today? 🦆", type: "greeting" },
+  { id: 3, message: "You two are so adorable together! 🦆❤️", type: "encouragement" },
+  { id: 4, message: "Remember to tell each other how much you care today! 🦆", type: "encouragement" },
+  { id: 5, message: "Quack quack! Just swimming by to say hi! 🦆", type: "fun" },
+  { id: 6, message: "Did you know ducks can sleep with one eye open? Just like me watching your love grow! 🦆", type: "fun" },
+  { id: 7, message: "Quack! 🦆", type: "quack" },
+  { id: 8, message: "Quack quack! 🦆", type: "quack" },
+  { id: 9, message: "QUACK! 🦆", type: "quack" },
+  { id: 10, message: "Love is like bread crumbs - it should be shared freely! 🦆🍞", type: "encouragement" },
+  { id: 11, message: "You two make my little duck heart happy! 🦆❤️", type: "encouragement" },
+  { id: 12, message: "Just paddling through your day to bring some joy! 🦆", type: "fun" },
+  { id: 13, message: "Quack-tastic day to be in love, isn't it? 🦆", type: "fun" },
+  { id: 14, message: "Even on rainy days, you two are my sunshine! 🦆☀️", type: "encouragement" },
+  { id: 15, message: "Waddle I do without you two lovebirds? 🦆❤️", type: "fun" }
+];
+
+// Default emoji sets for background based on theme
+export const themeEmojis: Record<string, string[]> = {
+  default: ['❤️', '💕', '💖', '💘', '💓', '💗', '💞', '💝', '💌'],
+  mars: ['🔥', '🚀', '⭐', '🌠', '🌌', '🪐', '🌕', '🌑', '👽'],
+  ocean: ['🌊', '🐚', '🐙', '🐬', '🐠', '🦀', '🏄‍♀️', '🏝️', '⛵'],
+  forest: ['🌲', '🍃', '🌿', '🍄', '🦊', '🐿️', '🦌', '🌳', '🌱'],
+  sunset: ['🌅', '🌄', '🧡', '🌇', '🦩', '🌆', '🎑', '🔆', '☀️'],
+  midnight: ['🌙', '✨', '🌟', '🌃', '🦇', '🌛', '🌠', '🧿', '🔮'],
+  retro: ['📻', '📟', '📼', '🎮', '💾', '🕹️', '📱', '💿', '🧩']
+};
+
 // Helper functions
 export function getDailyMessage(): LoveMessage {
   const today = new Date();
@@ -424,6 +474,62 @@ export function checkAndUnlockLetters(): LoveLetter[] {
     }
     return letter;
   });
+}
+
+// Timeline functions
+export function saveTimelineEvent(event: Omit<TimelineEvent, 'id'>): TimelineEvent {
+  const events = getTimelineEvents();
+  const newEvent = {
+    id: events.length > 0 ? Math.max(...events.map(e => e.id)) + 1 : 1,
+    ...event
+  };
+  
+  localStorage.setItem('timelineEvents', JSON.stringify([...events, newEvent]));
+  return newEvent;
+}
+
+export function getTimelineEvents(): TimelineEvent[] {
+  const events = localStorage.getItem('timelineEvents');
+  if (!events) return [];
+  
+  return JSON.parse(events).map((event: any) => ({
+    ...event,
+    date: new Date(event.date)
+  }));
+}
+
+// Mood tracking functions
+export function saveMoodEntry(entry: Omit<MoodEntry, 'id'>): MoodEntry {
+  const entries = getMoodEntries();
+  const newEntry = {
+    id: entries.length > 0 ? Math.max(...entries.map(e => e.id)) + 1 : 1,
+    ...entry
+  };
+  
+  localStorage.setItem('moodEntries', JSON.stringify([...entries, newEntry]));
+  return newEntry;
+}
+
+export function getMoodEntries(): MoodEntry[] {
+  const entries = localStorage.getItem('moodEntries');
+  if (!entries) return [];
+  
+  return JSON.parse(entries).map((entry: any) => ({
+    ...entry,
+    date: new Date(entry.date)
+  }));
+}
+
+// Duck chatbot functions
+export function getRandomDuckMessage(type?: 'greeting' | 'encouragement' | 'fun' | 'quack'): DuckMessage {
+  let filteredMessages = duckMessages;
+  
+  if (type) {
+    filteredMessages = duckMessages.filter(m => m.type === type);
+  }
+  
+  const index = Math.floor(Math.random() * filteredMessages.length);
+  return filteredMessages[index];
 }
 
 // Storage functions (using localStorage for demo purposes)

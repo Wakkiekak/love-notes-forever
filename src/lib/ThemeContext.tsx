@@ -25,16 +25,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     const savedFont = localStorage.getItem('font');
-    const darkMode = localStorage.getItem('darkMode') === 'true';
     const fontScale = localStorage.getItem('fontScale');
     
     if (savedTheme) setThemeState(savedTheme);
     if (savedFont) setFontState(savedFont);
-    
-    // Apply dark mode if enabled
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    }
     
     // Apply font scale if set
     if (fontScale) {
@@ -58,65 +52,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       localStorage.setItem('font', font);
     }
     
-    // Apply high contrast if enabled
-    const highContrast = localStorage.getItem('highContrast') === 'true';
-    
     // Apply comprehensive theme variables
-    if (activeTheme === 'space') {
-      // Deep Space theme (dark blue/purple space theme)
-      document.documentElement.style.setProperty('--background', '240 20% 3%');
-      document.documentElement.style.setProperty('--foreground', '240 10% 90%');
-      document.documentElement.style.setProperty('--primary', '240 60% 60%');
-      document.documentElement.style.setProperty('--primary-foreground', '240 10% 95%');
-      document.documentElement.style.setProperty('--secondary', '240 30% 20%');
-      document.documentElement.style.setProperty('--secondary-foreground', '240 10% 90%');
-      document.documentElement.style.setProperty('--card', '240 20% 8%');
-      document.documentElement.style.setProperty('--card-foreground', '240 10% 90%');
-      document.documentElement.style.setProperty('--muted', '240 15% 15%');
-      document.documentElement.style.setProperty('--muted-foreground', '240 10% 70%');
-      document.documentElement.style.setProperty('--accent', '240 40% 30%');
-      document.documentElement.style.setProperty('--accent-foreground', '240 10% 90%');
-      document.documentElement.style.setProperty('--border', '240 30% 20%');
-      document.documentElement.style.setProperty('--input', '240 30% 20%');
-      document.documentElement.style.setProperty('--ring', '240 60% 60%');
-      
-      // Sidebar colors
-      document.documentElement.style.setProperty('--sidebar-background', '240 20% 10%');
-      document.documentElement.style.setProperty('--sidebar-foreground', '240 10% 90%');
-      document.documentElement.style.setProperty('--sidebar-primary', '240 60% 60%');
-      document.documentElement.style.setProperty('--sidebar-primary-foreground', '240 10% 95%');
-      document.documentElement.style.setProperty('--sidebar-accent', '240 30% 25%');
-      document.documentElement.style.setProperty('--sidebar-accent-foreground', '240 10% 90%');
-      document.documentElement.style.setProperty('--sidebar-border', '240 30% 25%');
-      document.documentElement.style.setProperty('--sidebar-ring', '240 60% 60%');
-    } else if (activeTheme === 'galaxy') {
-      // Cosmic Galaxy theme (purple/pink galaxy theme)
-      document.documentElement.style.setProperty('--background', '270 30% 10%');
-      document.documentElement.style.setProperty('--foreground', '270 10% 95%');
-      document.documentElement.style.setProperty('--primary', '270 70% 70%');
-      document.documentElement.style.setProperty('--primary-foreground', '270 10% 95%');
-      document.documentElement.style.setProperty('--secondary', '270 40% 30%');
-      document.documentElement.style.setProperty('--secondary-foreground', '270 10% 95%');
-      document.documentElement.style.setProperty('--card', '270 30% 15%');
-      document.documentElement.style.setProperty('--card-foreground', '270 10% 95%');
-      document.documentElement.style.setProperty('--muted', '270 25% 25%');
-      document.documentElement.style.setProperty('--muted-foreground', '270 10% 80%');
-      document.documentElement.style.setProperty('--accent', '300 60% 50%');
-      document.documentElement.style.setProperty('--accent-foreground', '270 10% 95%');
-      document.documentElement.style.setProperty('--border', '270 40% 30%');
-      document.documentElement.style.setProperty('--input', '270 40% 30%');
-      document.documentElement.style.setProperty('--ring', '270 70% 70%');
-      
-      // Sidebar colors
-      document.documentElement.style.setProperty('--sidebar-background', '270 30% 15%');
-      document.documentElement.style.setProperty('--sidebar-foreground', '270 10% 95%');
-      document.documentElement.style.setProperty('--sidebar-primary', '270 70% 70%');
-      document.documentElement.style.setProperty('--sidebar-primary-foreground', '270 10% 95%');
-      document.documentElement.style.setProperty('--sidebar-accent', '300 60% 40%');
-      document.documentElement.style.setProperty('--sidebar-accent-foreground', '270 10% 95%');
-      document.documentElement.style.setProperty('--sidebar-border', '270 40% 35%');
-      document.documentElement.style.setProperty('--sidebar-ring', '270 70% 70%');
-    } else if (activeTheme === 'mars') {
+    if (activeTheme === 'mars') {
       // Updated Mars Night theme (orange-red, like night on Mars)
       document.documentElement.style.setProperty('--background', '10 60% 8%');  // Dark orange-red background
       document.documentElement.style.setProperty('--foreground', '30 80% 85%');  // Soft amber text
@@ -305,27 +242,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       document.documentElement.style.setProperty('--sidebar-accent-foreground', '340 10% 20%');
       document.documentElement.style.setProperty('--sidebar-border', '340 50% 90%');
       document.documentElement.style.setProperty('--sidebar-ring', '340 90% 68%');
-    }
-    
-    // Apply high contrast if enabled
-    if (highContrast) {
-      document.documentElement.style.setProperty('--foreground', '0 0% 0%');
-      document.documentElement.style.setProperty('--card-foreground', '0 0% 0%');
-      document.documentElement.style.setProperty('--muted-foreground', '0 0% 20%');
-      document.documentElement.style.setProperty('--primary', '210 100% 35%');
-      document.documentElement.style.setProperty('--primary-foreground', '0 0% 100%');
-      document.documentElement.style.setProperty('--secondary', '0 0% 20%');
-      document.documentElement.style.setProperty('--secondary-foreground', '0 0% 100%');
-      document.documentElement.style.setProperty('--accent-foreground', '0 0% 100%');
-      document.documentElement.style.setProperty('--border', '0 0% 40%');
-    }
-    
-    // Apply dark mode if enabled
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
     }
   }, [theme, font, previewTheme, previewFont]);
 

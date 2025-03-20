@@ -64,6 +64,7 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				love: {
+					50: '#FFF2F8',
 					100: '#FEE5F0',
 					200: '#FDC9E0',
 					300: '#FBADCF',
@@ -86,6 +87,7 @@ export default {
 					900: '#342A48'
 				},
 				ocean: {
+					50: '#F0F9FF',
 					100: '#DBEAFE',
 					200: '#BFDBFE',
 					300: '#93C5FD',
@@ -97,6 +99,7 @@ export default {
 					900: '#1E3A8A'
 				},
 				forest: {
+					50: '#F0FDF4',
 					100: '#DCFCE7',
 					200: '#BBF7D0',
 					300: '#86EFAC',
@@ -108,7 +111,8 @@ export default {
 					900: '#14532D'
 				},
 				mars: {
-					100: '#FEE2E2',
+					50: '#FFF4F1',
+					100: '#FFE4DE',
 					200: '#FECACA',
 					300: '#FCA5A5',
 					400: '#F87171',
@@ -194,6 +198,16 @@ export default {
 				'wiggle': {
 					'0%, 100%': { transform: 'rotate(-3deg)' },
 					'50%': { transform: 'rotate(3deg)' }
+				},
+				'zoom-in': {
+					'0%': { transform: 'scale(0.8)', opacity: '0' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
+				},
+				'bounce-in': {
+					'0%': { transform: 'scale(0.3)', opacity: '0' },
+					'50%': { transform: 'scale(1.05)', opacity: '0.8' },
+					'70%': { transform: 'scale(0.9)', opacity: '1' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
 				}
 			},
 			animation: {
@@ -202,7 +216,9 @@ export default {
 				'float': 'float 3s ease-in-out infinite',
 				'pulse-heart': 'pulse-heart 1.5s ease-in-out infinite',
 				'slide-up': 'slide-up 0.5s ease-out',
-				'wiggle': 'wiggle 1s ease-in-out infinite'
+				'wiggle': 'wiggle 1s ease-in-out infinite',
+				'zoom-in': 'zoom-in 0.5s ease-out',
+				'bounce-in': 'bounce-in 0.8s ease-out'
 			},
 			backgroundImage: {
 				'love-gradient': 'linear-gradient(to right, #ee9ca7, #ffdde1)',
@@ -221,7 +237,8 @@ export default {
 				'quicksand': ['Quicksand', 'sans-serif'],
 				'poppins': ['Poppins', 'sans-serif'],
 				'montserrat': ['Montserrat', 'sans-serif'],
-				'serif': ['Merriweather', 'serif']
+				'serif': ['Merriweather', 'serif'],
+				'fredoka': ['Fredoka One', 'cursive']
 			}
 		}
 	},
