@@ -14,6 +14,7 @@ interface EmojiPosition {
   rotation: number;
   isIcon?: boolean;
   iconType?: 'heart' | 'bird';
+  jiggleAmount?: number;
 }
 
 const FloatingEmojis: React.FC = () => {
@@ -21,6 +22,7 @@ const FloatingEmojis: React.FC = () => {
   const { theme } = useTheme();
   const [emojis, setEmojis] = useState<EmojiPosition[]>([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [scrollPosition, setScrollPosition] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Set up initial emojis
@@ -45,7 +47,8 @@ const FloatingEmojis: React.FC = () => {
         speed: Math.random() * 0.2 + 0.1, // movement speed
         rotation: Math.random() * 360, // initial rotation
         isIcon: useIcon,
-        iconType: useIcon ? iconType : undefined
+        iconType: useIcon ? iconType : undefined,
+        jiggleAmount: Math.random() * 0.8 + 0.2, // random jiggle amount (0.2-1.0)
       });
     }
     
@@ -64,8 +67,18 @@ const FloatingEmojis: React.FC = () => {
       }
     };
     
+    // Track scroll position
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+    
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
   
   // Helper to get theme-specific colors
@@ -77,6 +90,7 @@ const FloatingEmojis: React.FC = () => {
       case 'sunset': return '#F97316';
       case 'midnight': return '#6366F1';
       case 'retro': return '#9B6A56';
+      case 'pastel': return '#D8B4FE';
       default: return '#F46BA8';
     }
   };
@@ -91,6 +105,10 @@ const FloatingEmojis: React.FC = () => {
         const parallaxX = (emoji.x - mousePosition.x) * (emoji.speed * -0.1);
         const parallaxY = (emoji.y - mousePosition.y) * (emoji.speed * -0.1);
         
+        // Calculate jiggle effect based on scroll position
+        const jiggleX = Math.sin(scrollPosition * 0.01 * emoji.jiggleAmount!) * 3;
+        const jiggleY = Math.cos(scrollPosition * 0.01 * emoji.jiggleAmount!) * 2;
+        
         return (
           <div
             key={emoji.id}
@@ -99,7 +117,7 @@ const FloatingEmojis: React.FC = () => {
               left: `${emoji.x}%`,
               top: `${emoji.y}%`,
               fontSize: `${emoji.size}rem`,
-              transform: `translate(${parallaxX}px, ${parallaxY}px) rotate(${emoji.rotation}deg)`,
+              transform: `translate(${parallaxX + jiggleX}px, ${parallaxY + jiggleY}px) rotate(${emoji.rotation + (scrollPosition * 0.03 * emoji.jiggleAmount!)}deg)`,
               transition: 'transform 0.5s ease-out'
             }}
           >
