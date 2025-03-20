@@ -111,6 +111,26 @@ export const dailyMessages: LoveMessage[] = [
     content: "I love watching you do the things you're passionate about. Your happines is contagious!", 
     type: 'daily' 
   },
+  { 
+    id: 11, 
+    content: "Hey mars, just wanted to let you know that im always here for you 💖", 
+    type: 'daily' 
+  },
+  { 
+    id: 12, 
+    content: "NO YOUR CUTER NO DEBATE STOP YOUR CUTER 💖", 
+    type: 'daily' 
+  },
+  { 
+    id: 13, 
+    content: "Your the most amazing person ive ever met. 💞", 
+    type: 'daily' 
+  },
+  { 
+    id: 13, 
+    content: "Are you the mars or am I, because im totally red when you talk to me 💕", 
+    type: 'daily' 
+  },
 ];
 
 // Surprise messages
